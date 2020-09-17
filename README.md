@@ -1,24 +1,24 @@
-# README
+# ながのCAKE
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##詳細な説明
+洋菓子店のECサイト
 
-Things you may want to cover:
+##使用言語(バージョン)
+RubyonRails　（Rails 5.2.4.4）
 
-* Ruby version
+##環境構築
+vagrant
 
-* System dependencies
+##技術選定
+ rails初学者
 
-* Configuration
+##機能一覧
+ devise機能,商品の一覧詳細表示機能,カード機能,注文機能,会員情報編集機能,退会機能
+ 配送先変更機能,注文履歴の一覧詳細表示機能,顧客一覧詳細表示機能,ジャンル設定機能
+ 商品情報変更機能
 
-* Database creation
+##使用方法
+ 顧客がログインして商品の購入、管理者が顧客、商品、ジャンルなどを管理する。
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+##作者
+AR-koki,daisuke33,八木龍弘,kikuri1931
