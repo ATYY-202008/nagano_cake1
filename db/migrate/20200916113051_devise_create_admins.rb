@@ -12,14 +12,6 @@ class DeviseCreateAdmins < ActiveRecord::Migration[5.2]
       t.datetime :reset_password_sent_at
 
       ## Rememberable
-      t.string :last_name
-      t.string :first_name
-      t.string :last_name_kana
-      t.string :first_name_kana
-      t.string :postal_code
-      t.string :address
-      t.string :telephone_number
-      t.boolean :is_deleted
       t.datetime :remember_created_at
 
       ## Trackable
