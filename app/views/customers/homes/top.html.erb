@@ -1,0 +1,79 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3">
+			<!-- ジャンル検索 -->
+			<table style="margin-top:50px; border: 1px solid black;">
+				<thead>
+						<tr>
+							<th class="text-center" style="font-size: 20px; border-bottom: 1px solid black; padding: 5px;">ジャンル検索</th>
+						</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td style="padding: 15px 100px 10px 5px; font-size: 18px;">
+							<a href="" style="color: #696969;">ケーキ</a>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding: 15px 100px 10px 5px; font-size: 18px;">
+							<a href="" style="color: #696969;">焼き菓子</a>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding: 15px 100px 10px 5px; font-size: 18px;">
+							<a href="" style="color: #696969;">プリン</a>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding: 15px 100px 150px 5px; font-size: 18px;">
+							<a href="" style="color: #696969;">キャンディ</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- ジャンル検索 -->
+		</div>
+
+		<div class="col-xs-9">
+			<!-- トップ画像 -->
+			<%= image_tag('food-5158702_1920.jpg', style: "width: 100%; height: 400px; margin-top: 50px; opacity: 0.5; position: relative;") %>
+			<div class="top-text" style="position: absolute; top: 180px; left: 180px; ">
+				<h3>
+					ようこそ、NaganoCakeへ！<br>
+					このサイトは、ケーキ販売のECサイトになります。<br>
+           会員でない方も商品の閲覧はできますが、<br>
+           購入には会員登録が必要になります。
+        </h3>
+			</div>
+			<!-- トップ画像 -->
+
+			<!-- おすすめ商品一覧 -->
+			<h1 style="margin:30px 0;">オススメ商品</h1>
+			<div class="pull-left" style="width: 200px;">
+				<%= image_tag('food-5158702_1920.jpg', style: "width: 200px; height: 130px;") %>
+				<p style="margin-top: 20px;">商品名</p>
+				<p>￥0,000</p>
+			</div>
+
+			<div class="pull-left" style="width: 200px; margin-left: 15px;">
+				<%= image_tag('pastries-3418653_1920.jpg', style: "width: 200px; height: 130px;") %>
+				<p style="margin-top: 20px;">商品名</p>
+				<p>￥0,000</p>
+			</div>
+
+			<div class="pull-left" style="width: 200px; margin-left: 15px;">
+				<%= image_tag('caramel-1958358_1920.jpg', style: "width: 200px; height: 130px;") %>
+				<p style="margin-top: 20px;">商品名</p>
+				<p>￥0,000</p>
+			</div>
+
+			<div class="pull-left" style="width: 200px; margin-left: 15px;">
+				<%= image_tag('candy-1961536_1920.jpg', style: "width: 200px; height: 130px;") %>
+				<p style="margin-top: 20px;">商品名</p>
+				<p>￥0,000</p>
+			</div>
+			<%= link_to "もっと見る>",customers_items_path, class: "pull-right", style: "margin-top: 10px;" %>
+		</div>
+		<!-- おすすめ商品一覧 -->
+	</div>
+</div>
