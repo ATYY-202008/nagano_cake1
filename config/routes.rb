@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   #rootパス
-  root 'homes#top'
+  root 'customers/homes#top'
 
   # 管理者用サイトのrouting
    devise_for :admins
