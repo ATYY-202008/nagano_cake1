@@ -245,8 +245,12 @@ Devise.setup do |config|
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
+=======
+  config.scoped_views = true
+>>>>>>> origin/develop
 =======
   config.scoped_views = true
 >>>>>>> origin/develop
