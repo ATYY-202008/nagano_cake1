@@ -13,6 +13,15 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap-sprockets";  
+@import "bootstrap-sprockets";
 @import "bootstrap";
-@import "font-awesome"
+@import "font-awesome";
+
+.navbar .nav > li > a:hover {
+	color: white;
+	border: 1px solid white;
+	border-radius: 5px;
+}
+.navbar .nav > li {
+	margin-right: 10px;
+}
