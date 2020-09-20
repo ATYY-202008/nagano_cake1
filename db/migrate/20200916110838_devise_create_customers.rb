@@ -19,7 +19,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[5.2]
       t.string :postal_code
       t.string :address
       t.string :telephone_number
-      t.boolean :is_deleted
+      t.boolean :is_deleted , default: false, null: false
       t.datetime :remember_created_at
 
       ## Trackable
