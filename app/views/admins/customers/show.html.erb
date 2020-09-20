@@ -1,0 +1,60 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12" style="margin: 20px 0;">
+			<span style="background-color: silver; font-size: 20px;padding: 5px 15px;">
+				<%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細
+			</span>
+		</div>
+		<p id="notice"><%= notice %></p>
+		<table>
+			<tbody>
+
+				<tr>
+					<td style="padding: 30px 100px 10px 5px;">顧客ID</td>
+					<td style="padding: 30px 100px 10px 5px;">
+						<%= @customer.id %>
+						<% if @customer.is_deleted %>
+							<span class="label label-danger">無効会員</span>
+						<% else%>
+							<span class="label label-primary">有効会員</span>
+						<% end %>
+					</td>
+				</tr>
+
+				<tr>
+					<td style="padding: 15px 100px 10px 5px;">氏名</td>
+					<td style="padding: 15px 100px 10px 5px;"><%= @customer.last_name %> <%= @customer.first_name %></td>
+				</tr>
+				<tr>
+					<td style="padding: 15px 100px 10px 5px;">フリガナ</td>
+					<td style="padding: 15px 100px 10px 5px;">
+						<%= @customer.last_name_kana %> <%= @customer.first_name_kana %>
+					</td>
+				</tr>
+
+				<tr>
+					<td style="padding: 15px 100px 10px 5px;">郵便番号</td>
+					<td style="padding: 15px 100px 10px 5px;"><%= @customer.postal_code %></td>
+				</tr>
+
+				<tr>
+					<td style="padding: 15px 100px 10px 5px;">住所</td>
+					<td style="padding: 15px 100px 10px 5px;"><%= @customer.address %></td>
+				</tr>
+
+				<tr>
+					<td style="padding: 15px 100px 10px 5px;">電話番号</td>
+					<td style="padding: 15px 100px 10px 5px;"><%= @customer.telephone_number %></td>
+				</tr>
+
+				<tr>
+					<td style="padding: 15px 0 10px 5px;">メールアドレス</td>
+					<td style="padding: 15px 100px 10px 5px;"><%= @customer.email %></td>
+				</tr>
+
+			</tbody>
+		</table>
+		<%= link_to "編集する" ,edit_admins_customer_path(@customer), class: "btn btn-primary", style: "margin:40px 10px 0 0;" %>
+		<%= link_to "注文履歴一覧を見る" ,admins_orders_path, class: "btn btn-primary", style: "margin:40px 10px 0 0;" %>
+	</div>
+</div>
