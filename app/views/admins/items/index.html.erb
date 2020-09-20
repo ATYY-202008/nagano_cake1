@@ -12,22 +12,22 @@
                 </tr>
             </thead>
 
-        <% @items.each do |item| %>
+        <%# @items.each do |item| %>
             <tbody>
-                <td><%= item.id %></td>
-                <td><%= link_to item.name, new_admins_item_path(item) do %></td>
-                <td><%= item.price %></td>
-                <td><%= genre.name %></td>
+                <td>item.id<%#= item.id %></td>
+                <td>item<%#= link_to item.name, new_admins_item_path(item) do %></td>
+                <td>item.price<%#= item.price %></td>
+                <td>genre.name<%#= genre.name %></td>
                 <td>
-                    <% if %>
+                    <%# if %>
                         <p>販売中</p>
-                    <% else %>
+                    <%# else %>
                         <p>販売停止中</p>
-                    <% end %>
+                    <%# end %>
                 </td>
             </tbody>
-        <% end %>
-        <%= paginate @items %>
+        <%# end %>
+        <%#= paginate @items %>
         </table>
     </div>
 </div>
