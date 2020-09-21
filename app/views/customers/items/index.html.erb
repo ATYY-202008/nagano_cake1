@@ -1,0 +1,64 @@
+<div class ="container">
+	<div class ="row">
+		<div class ="col-xs-3">
+			<!-- ジャンル検索 -->
+			<table style="margin-top:50px; border: 1px solid black;">
+				<thead>
+						<tr>
+							<th class="text-center" style="font-size: 20px; border-bottom: 1px solid black; padding: 5px;">ジャンル検索</th>
+						</tr>
+				</thead>
+				<tbody>
+					<% @genres.each do |genre| %>
+						<tr>
+							<td style ="padding: 15px 100px 10px 5px; font-size: 18px; ">
+								<%= link_to( genre.name, controller: "customers/items", genre_id: genre.id) %>
+							</td>
+						</tr>
+					<% end %>
+					<tr>
+						<td style ="padding: 15px 100px 150px 5px;"></td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- ジャンル検索 -->
+		</div>
+		<div class ="col-xs-9">
+			<div class ="row">
+				<div class ="col-xs-12">
+					<!-- 商品一覧 -->
+					<% if params[:genre_id] %>
+						<h2 style ="margin-top :50px;"><span><%= @genre.name %></span>一覧<span style = "font-size :20px;">(全<%= @item %>件)</span></h2>
+					<% else %>
+						<h2 style ="margin-top :50px;">商品一覧<span>(全<%= @item %>件)</span></h2>
+					<% end %>
+					<div class ="clearfix">
+						<% @items.each do |item| %>
+							<div class ="item_box" style ="width: 200px; float:left; margin:30px 10px 0 0;">
+								<%= image_tag(item.image_id, style: "width: 200px; height: 130px;") %>
+								<a href ="/customers/items/<%= item.id %>"><%= item.name %></a>
+								<p>¥<%= item.price %></p>
+							</div>
+						<% end %>
+					</div>
+					<%= paginate @items %>
+					<!-- 商品一覧 -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
