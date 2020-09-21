@@ -1,0 +1,47 @@
+<div class ="container">
+	<div class ="row">
+		<div class ="col-xs-3">
+			<!-- ジャンル検索 -->
+			<table style="margin-top:50px; border: 1px solid black;">
+				<thead>
+						<tr>
+							<th class="text-center" style="font-size: 20px; border-bottom: 1px solid black; padding: 5px;">ジャンル検索</th>
+						</tr>
+				</thead>
+				<tbody>
+					<% @genres.each do |genre| %>
+						<tr>
+							<td style ="padding: 15px 100px 10px 5px; font-size: 18px; ">
+								<%= link_to( genre.name, controller: "customers/items", genre_id: genre.id) %>
+							</td>
+						</tr>
+					<% end %>
+					<tr>
+						<td style ="padding: 15px 100px 150px 5px;"></td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- ジャンル検索 -->
+		</div>
+		<div class ="col-xs-9">
+			<!-- 商品詳細 -->
+			<div class ="row">
+				<div class ="introduction_box" style = "margin: 50px auto;">
+					<div class ="col-xs-5">
+						<%= image_tag(@item.image_id, style: "width: 100%; height: 250px;") %>
+					</div>
+					<div class ="col-xs-7">
+						<h2 style ="font-weight: bold;"><%=@item.name%></h2>
+						<p style ="font-size: 15px;"><%= @item.introduction %></p>
+						<p style ="font-size: 20px;">¥<%= @item.price %>(税込み)</p>
+						<%= form_for(@cart_item, url: customers_cart_items_path) do |f| %>
+							<%= f.number_field :amount, placeholder: "数量選択" %>
+							<%= f.submit "カートに入れる" %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+			<!-- 商品詳細 -->
+		</div>
+	</div>
+</div>

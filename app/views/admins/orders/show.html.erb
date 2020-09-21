@@ -48,22 +48,54 @@
 
 			</tbody>
 		</table>
-		<table class="table">
+		<div class="col-xs-7" style="margin-top: 40px;">
+			<table class="table">
 
 				<thead>
 					<tr class="active">
-						<th>商品名</th>
-						<th>単価（税込み）</th>
-						<th>数量</th>
-						<th>小計</th>
-						<th>製造ステータス</th>
+						<th class="text-center">商品名</th>
+						<th class="text-center">単価（税込み）</th>
+						<th class="text-center">数量</th>
+						<th class="text-center">小計</th>
+						<th class="text-center">製造ステータス</th>
 					</tr>
 				</thead>
 
 				<tbody>
-					
+					<% @order_details.each do |order_detail| %>
+						<tr>
+							<td class="text-center"><%= order_detail.item.name %></td>
+							<td class="text-center"><%= order_detail.price_tax %></td>
+							<td class="text-center"><%= order_detail.amount %></td>
+							<td class="text-center"><%= order_detail.price_tax * order_detail.amount %></td>
+							<td class="text-center">
+								<%= form_for(order_detail, url:"/admins/order_details/#{order_detail.id}") do |f| %>
+	  								<label></label>
+	  								<%= f.select :making_status, OrderDetail.making_statuses.keys.to_a, {}, style: "padding: 5px 50px;" %>
+	  								<%= f.submit "更新", class: "btn btn-primary", style: "margin-left:10px;" %>
+	  							<% end %>
+							</td>
+						</tr>
+					<% end %>
 				</tbody>
 
 			</table>
+		</div>
+		<div class="pull-right" style="bottom: 0;">
+			<table>
+				<tr>
+					<th style="padding: 15px 100px 10px 5px; font-size: 20px;">商品合計</th>
+					<td style="padding: 15px 100px 10px 5px; font-size: 20px;"><%= @order.total_payment %>円</td>
+				</tr>
+				<tr>
+					<th style="padding: 15px 100px 10px 5px; font-size: 20px;">送料</th>
+					<td style="padding: 15px 100px 10px 5px; font-size: 20px;"><%= @order.shipping_cost %>円</td>
+				</tr>
+				<tr>
+					<th style="padding: 15px 100px 10px 5px; font-size: 20px;">請求金額</th>
+					<td style="padding: 15px 100px 10px 5px; font-size: 20px;"><%= @order.shipping_cost + @order.total_payment%>円</td>
+				</tr>
+			</table>
+		</div>
 	</div>
 </div>
