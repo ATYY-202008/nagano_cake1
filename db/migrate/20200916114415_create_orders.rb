@@ -7,8 +7,8 @@ class CreateOrders < ActiveRecord::Migration[5.2]
     	t.string :name
     	t.integer :shipping_cost
     	t.integer :total_payment
-    	t.integer :payment_method
-    	t.integer :status
+    	t.integer :payment_method, defalut: 0, null: false
+    	t.integer :status, defalut: 0, null: false
       t.timestamps
     end
   end

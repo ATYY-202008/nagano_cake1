@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2020_09_16_114649) do
     t.integer "item_id"
     t.integer "price_tax"
     t.integer "amount"
-    t.integer "making_status"
+    t.integer "making_status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -96,8 +96,8 @@ ActiveRecord::Schema.define(version: 2020_09_16_114649) do
     t.string "name"
     t.integer "shipping_cost"
     t.integer "total_payment"
-    t.integer "payment_method"
-    t.integer "status"
+    t.integer "payment_method", null: false
+    t.integer "status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
