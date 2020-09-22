@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<div class="col-xs-12" style="margin: 20px 0;">
+		<div class="col-xs-12" style="margin: 20px 0 20px 100px;">
 			<span style="background-color: silver; font-size: 20px;padding: 5px 15px;">注文履歴詳細</span>
 		</div>
 
@@ -65,9 +65,15 @@
 					<% @order_details.each do |order_detail| %>
 						<tr>
 							<td class="text-center"><%= order_detail.item.name %></td>
-							<td class="text-center"><%= order_detail.price_tax %></td>
-							<td class="text-center"><%= order_detail.amount %></td>
-							<td class="text-center"><%= order_detail.price_tax * order_detail.amount %></td>
+							<td class="text-center">
+								<%= @add_price_tax.floor.to_s(:delimited, delimiter: ',') %>
+							</td>
+							<td class="text-center">
+								<%= order_detail.amount.to_s(:delimited, delimiter: ',') %>
+							</td>
+							<td class="text-center">
+								<%= @order_price.floor.to_s(:delimited, delimiter: ',') %>
+							</td>
 							<td class="text-center">
 								<%= form_for(order_detail, url:"/admins/order_details/#{order_detail.id}") do |f| %>
 	  								<label></label>
@@ -81,19 +87,25 @@
 
 			</table>
 		</div>
-		<div class="pull-right" style="bottom: 0;">
+		<div class="pull-right">
 			<table>
 				<tr>
 					<th style="padding: 15px 100px 10px 5px; font-size: 20px;">商品合計</th>
-					<td style="padding: 15px 100px 10px 5px; font-size: 20px;"><%= @order.total_payment %>円</td>
+					<td class="text-right" style="padding: 15px 100px 10px 5px; font-size: 20px;">
+						<%= @total_payment.floor.to_s(:delimited, delimiter: ',') %>円
+					</td>
 				</tr>
 				<tr>
 					<th style="padding: 15px 100px 10px 5px; font-size: 20px;">送料</th>
-					<td style="padding: 15px 100px 10px 5px; font-size: 20px;"><%= @order.shipping_cost %>円</td>
+					<td class="text-right" style="padding: 15px 100px 10px 5px; font-size: 20px;">
+						<%= @order.shipping_cost.to_s(:delimited, delimiter: ',') %>円
+					</td>
 				</tr>
 				<tr>
 					<th style="padding: 15px 100px 10px 5px; font-size: 20px;">請求金額</th>
-					<td style="padding: 15px 100px 10px 5px; font-size: 20px;"><%= @order.shipping_cost + @order.total_payment%>円</td>
+					<td class="text-right" style="padding: 15px 100px 10px 5px; font-size: 20px;">
+						<%= @order_total_payment.floor.to_s(:delimited, delimiter: ',')%>円
+					</td>
 				</tr>
 			</table>
 		</div>
