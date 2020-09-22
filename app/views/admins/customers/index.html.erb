@@ -10,7 +10,7 @@
 				<thead>
 					<tr class="active">
 						<th>会員ID</th>
-						<th><a href="" style="color: black;">氏名</a></th>
+						<th><a href="" style="color: black; text-decoration: underline;">氏名</a></th>
 						<th>メールアドレス</th>
 						<th>ステータス</th>
 					</tr>
@@ -21,7 +21,7 @@
 						<tr>
 							<td><%= customer.id %></td>
 							<td>
-								<%= link_to admins_customer_path(customer) do %>
+								<%= link_to admins_customer_path(customer), style:"color: black; text-decoration: underline;" do %>
 									<%= customer.last_name %><%= customer.first_name %>
 								<% end %>
 							</td>
@@ -38,6 +38,7 @@
 				</tbody>
 
 			</table>
+			<%= paginate @customers %>
 		</div>
 
 	</div>
