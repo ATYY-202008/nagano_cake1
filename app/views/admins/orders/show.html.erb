@@ -1,0 +1,121 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12" style="margin: 20px 0 20px 100px;">
+			<span style="background-color: silver; font-size: 20px;padding: 5px 15px;">注文履歴詳細</span>
+		</div>
+		<p id="notice"><%= notice %></p>
+		<table>
+			<tbody>
+
+				<!-- 購入者～注文ステータス -->
+				<tr>
+					<td style="padding: 5px 100px 10px 5px; font-size: 20px;">購入者</td>
+					<td style="padding: 15px 100px 10px 5px; font-size: 20px;">
+						<%= link_to admins_customer_path(@order.customer_id), style:"color: black; text-decoration: underline;" do %>
+							<%= @order.customer.last_name %> <%= @order.customer.first_name %>
+						<% end %>
+					</td>
+				</tr>
+
+				<tr>
+					<td style="padding: 5px 100px 10px 5px; font-size: 20px;">配送先</td>
+					<td style="padding: 15px 100px 10px 5px; font-size: 20px;">
+						〒<%= @order.postal_code %> <%= @order.address %> <br>
+						<%= @order.name %>
+					</td>
+				</tr>
+
+				<tr>
+					<td style="padding: 5px 100px 10px 5px; font-size: 20px;">支払方法</td>
+					<td style="padding: 15px 100px 10px 5px; font-size: 20px;">
+						<% if @order. payment_method == "クレジットカード" %>
+							<p>クレジットカード</p>
+						<% else %>
+							<p>銀行振込</p>
+						<% end %>
+					</td>
+				</tr>
+
+				<tr>
+					<td style="padding: 5px 0 10px 5px; font-size: 20px;">注文ステータス</td>
+					<td style="padding: 15px 100px 10px 5px; font-size: 20px;">
+						<%= form_for(@order, url:"/admins/orders/#{@order.id}") do |f| %>
+  							<label></label>
+  							<%= f.select :status, Order.statuses.keys.to_a, {}, style: "padding: 5px 50px;" %>
+  							<%= f.submit "更新", class: "btn btn-primary" %>
+						<% end %>
+					</td>
+				</tr>
+				<!-- 購入者～注文ステータス -->
+
+			</tbody>
+		</table>
+		<div class="col-xs-7" style="margin-top: 40px;">
+			<table class="table">
+
+				<thead>
+					<tr class="active">
+						<th class="text-center">商品名</th>
+						<th class="text-center">単価（税込み）</th>
+						<th class="text-center">数量</th>
+						<th class="text-center">小計</th>
+						<th class="text-center">製造ステータス</th>
+					</tr>
+				</thead>
+
+				<!-- 購入詳細 -->
+				<tbody>
+					<% @order_details.each do |order_detail| %>
+						<tr>
+							<td class="text-center"><%= order_detail.item.name %></td>
+							<td class="text-center">
+								<%= (order_detail.price_tax * 1.1).floor.to_s(:delimited, delimiter: ',') %>	
+							</td>
+							<td class="text-center">
+								<%= order_detail.amount.to_s(:delimited, delimiter: ',') %>
+							</td>
+							<td class="text-center">
+								<%= (order_detail.price_tax * 1.1 * order_detail.amount).floor.to_s(:delimited, delimiter: ',') %>
+							</td>
+							<td class="text-center">
+								<%= form_for(order_detail, url:"/admins/order_details/#{order_detail.id}") do |f| %>
+	  								<label></label>
+	  								<%= f.select :making_status, OrderDetail.making_statuses.keys.to_a, {}, style: "padding: 5px 50px;" %>
+	  								<%= f.submit "更新", class: "btn btn-primary", style: "margin-left:10px;" %>
+	  							<% end %>
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
+
+				<!-- 購入詳細 -->
+			</table>
+		</div>
+
+		<!-- 請求金額 -->
+		<div class="pull-right">
+			<table>
+				<tr>
+					<th style="padding: 15px 100px 10px 5px; font-size: 20px;">商品合計</th>
+					<td class="text-right" style="padding: 15px 100px 10px 5px; font-size: 20px;">
+						<%= @total_payment.floor.to_s(:delimited, delimiter: ',') %>円
+					</td>
+				</tr>
+				<tr>
+					<th style="padding: 15px 100px 10px 5px; font-size: 20px;">送料</th>
+					<td class="text-right" style="padding: 15px 100px 10px 5px; font-size: 20px;">
+						<%= @order.shipping_cost.to_s(:delimited, delimiter: ',') %>円
+					</td>
+				</tr>
+				<tr>
+					<th style="padding: 15px 100px 10px 5px; font-size: 20px;">請求金額</th>
+					<td class="text-right" style="padding: 15px 100px 10px 5px; font-size: 20px;">
+						<%= @order_total_payment.floor.to_s(:delimited, delimiter: ',')%>円
+					</td>
+				</tr>
+			</table>
+		</div>
+		<!-- 請求金額 -->
+
+	</div>
+</div>

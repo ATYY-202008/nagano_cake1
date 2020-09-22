@@ -9,26 +9,13 @@
 						</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td style="padding: 15px 100px 10px 5px; font-size: 18px;">
-							<a href="" style="color: #696969;">ケーキ</a>
-						</td>
-					</tr>
-					<tr>
-						<td style="padding: 15px 100px 10px 5px; font-size: 18px;">
-							<a href="" style="color: #696969;">焼き菓子</a>
-						</td>
-					</tr>
-					<tr>
-						<td style="padding: 15px 100px 10px 5px; font-size: 18px;">
-							<a href="" style="color: #696969;">プリン</a>
-						</td>
-					</tr>
-					<tr>
-						<td style="padding: 15px 100px 150px 5px; font-size: 18px;">
-							<a href="" style="color: #696969;">キャンディ</a>
-						</td>
-					</tr>
+					<% @genres.each do |genre| %>
+						<tr>
+							<td style="padding: 15px 100px 10px 5px; font-size: 18px;">
+								<%= link_to genre.name, controller: customers_items_path(@genre) %>
+							</td>
+						</tr>
+					<% end %>
 				</tbody>
 			</table>
 			<!-- ジャンル検索 -->

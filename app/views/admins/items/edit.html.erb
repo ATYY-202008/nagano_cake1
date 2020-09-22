@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row" style="font-size: 30px;">商品編集</div>
+    <div class="row">
+        <%= form_with model:@item, url: admins_item_path,method: :patch do |f| %>
+            <div class="col-lg-5"class="col-lg-5" style="padding: 100px 0 0 100px;"><%= f.attachment_field :image %></div>
+            <div class="col-lg-3" style="margin-top: 100px;" >
+                <div class="row">
+                    <%= f.label :商品名, style: "margin-right: 24px;" %>
+                    <%= f.text_field :name %>
+                </div>
+                <div class="row" style="margin-top: 20px;">
+                    <%= f.label :商品説明, style: "margin: 20px 10px 0 0" %>
+                    <%= f.text_area :introduction %>
+                </div>
+                <div class="row" style="margin-top: 20px;">
+                    <%= f.label :ジャンル, style: "margin-right: 12px;"  %>
+                    <%= f.select :genre, {"ケーキ": 1, "プリン": 2, "焼き菓子": 3, "キャンディ": 4},{ include_blank: '-- 選択してください --' } %>
+                </div>
+                <div class="row" style="margin-top: 20px;">
+                    <%= f.label :税抜価格, style: "margin-right: 12px;" %>
+                    <%= f.text_field :price %>円
+                </div>
+                <div class="row" style="margin-top: 20px;">
+                    <%= f.label :販売ステータス %>
+                    <%= f.select :is_active, {"販売中":true ,"売り切れ":false},{ include_blank: '-- 選択してください --' } %>
+                </div>
+                <div class="row" style="margin-top: 30px;padding-left: 100px;">
+                    <%= f.submit "変更を保存", class: "btn btn-primary btn-lg" %>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
