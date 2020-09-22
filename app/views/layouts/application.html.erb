@@ -31,12 +31,12 @@
                   </li>
                   <li class="" style="border: 1px;">
                     <%= link_to customers_items_path do %>
-                      <i class="glyphicon glyphicon-user" aria-hidden="true"></i> 商品一覧
+                      <i class="glyphicon glyphicon-leaf" aria-hidden="true"></i> 商品一覧
                     <% end %>
                   </li>
                   <li class="" style="border: 1px;">
                     <%= link_to customers_cart_items_path(@customer) do %>
-                    <i class="glyphicon glyphicon-book" aria-hidden="true"></i> カート
+                    <i class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i> カート
                     <% end %>
                   </li>
                   <li class="" style="border: 1px;">
@@ -49,11 +49,11 @@
                 <% elsif admin_signed_in? %>
                   <li class="" style="border: 1px;">
                   <%= link_to admins_items_path do %>
-                   <i class="glyphicon glyphicon-home" aria-hidden="true"></i> 商品一覧
+                   <i class="glyphicon glyphicon-leaf" aria-hidden="true"></i> 商品一覧
                   <% end %>
                   </li>
                   <li class="" style="border: 1px;">
-                    <%= link_to admins_customers do %>
+                    <%= link_to admins_customers_path do %>
                       <i class="glyphicon glyphicon-user" aria-hidden="true"></i> 会員一覧
                     <% end %>
                   </li>
@@ -63,8 +63,8 @@
                     <% end %>
                   </li>
                   <li class="" style="border: 1px;">
-                    <%= link_to admins_genres_path, method: :delete do %>
-                      <i class="glyphicon glyphicon-log-out" aria-hidden="true"></i> ジャンル一覧
+                    <%= link_to admins_genres_path do %>
+                      <i class="glyphicon glyphicon-list" aria-hidden="true"></i> ジャンル一覧
                     <% end %>
                   </li>
                   <li class="" style="border: 1px;">
@@ -82,7 +82,7 @@
                   </li>
                   <li style="">
                     <%= link_to customers_customer_top_path do %>
-                      <i class="glyphicon glyphicon-link" aria-hidden="true"></i> 商品一覧
+                      <i class="glyphicon glyphicon-leaf" aria-hidden="true"></i> 商品一覧
                     <% end %>
                   </li>
                   <li style="">
