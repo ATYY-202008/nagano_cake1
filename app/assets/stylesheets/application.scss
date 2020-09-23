@@ -25,3 +25,30 @@
 .navbar .nav > li {
 	margin-right: 10px;
 }
+.icon {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  border-radius: 50%;
+  border-right: 3px solid #ccc;
+  border-bottom: 3px solid #ccc;
+}
+
+.icon::before, .icon--plus::after {
+  position: absolute;
+  top: 23px;
+  left: 50%;
+  content: '';
+  display: inline-block;
+  width: 35px;
+  height: 13px;
+  border-top: 4px solid #999999;
+  transform: translateX(-50%);
+}
+
+.icon--plus:after {
+  top: 17px;
+  left: 2px;
+  transform: rotate(90deg);
+}

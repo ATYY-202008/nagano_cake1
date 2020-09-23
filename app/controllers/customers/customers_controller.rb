@@ -19,7 +19,7 @@ class Customers::CustomersController < ApplicationController
 	def withdraw
 		@customer = Customer.find(current_customer.id)
 		if @customer.update(is_deleted: true)
-			binding.pry
+			
 			reset_session
 			redirect_to root_path, notice: "You have withdrawn successfully."
 		else
