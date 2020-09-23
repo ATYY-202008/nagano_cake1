@@ -1,9 +1,7 @@
 <div class="container">
 	<div class="row">
-		<div class="col-xs-12" style="margin: 20px 0 50px;">
-			<span style="background-color: silver; font-size: 20px;padding: 5px 15px;">
-				<%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集
-			</span>
+		<div class="col-xs-12" style="margin: 20px 0 50px 100px;">
+			<span style="background-color: silver; font-size: 20px;padding: 5px 15px;">登録情報編集</span>
 		</div>
 
 		<!-- エラー文 -->
@@ -17,22 +15,16 @@
   	<% end %>
   	<!-- エラー文 -->
 
-		<%= form_for(@customer, url:"/admins/customers/#{@customer.id}") do |f| %>
-			<!-- 会員ID -->
-			<div class="row" style="margin-top: 20px;">
-				<label class="col-lg-2">会員ID</label>
-				<div  class="col-lg-10">
-					<%= @customer.id %>
-				</div>
-			</div>
-			<!-- 会員ID -->
+		<%= form_for(@customer, url:"/customers/customers/#{@customer.id}") do |f| %>
 
 			<!-- 氏名フォーム -->
 			<div class="row" style="margin-top: 20px;">
-	    	<label class="col-lg-2">氏名</label>
+	    	<label class="col-lg-1">氏名</label>
+            <div class="col-lg-1 col-lg-offset-1" style="text-align: right;">(姓)</div>
 	    	<div class="col-lg-3">
 	    		<%= f.text_field :last_name, autofocus: true, class:"form-control" %>
 	    	</div>
+            <div class="col-lg-1" style="text-align: right;">(名)</div>
 	    	<div class="col-lg-3">
 	    		<%= f.text_field :first_name, class:"form-control" %>
 	    	</div>
@@ -42,57 +34,54 @@
     	<!-- フリガナフォーム -->
     	<div class="row" style="margin-top: 20px;">
 	    	<label class="col-lg-2">フリガナ</label>
+            <div class="col-lg-1" style="text-align: right;">(セイ)</div>
 	    	<div class="col-lg-3">
-	    		<%= f.text_field :last_name_kana, class:"form-control" %>
+	           <%= f.text_field :last_name_kana, class:"form-control" %>
 	    	</div>
+            <div class="col-lg-1" style="text-align: right;">(メイ)</div>
 	    	<div class="col-lg-3">
 	    		<%= f.text_field :first_name_kana, class:"form-control" %>
 	    	</div>
 	    </div>
 	    <!-- フリガナフォーム -->
 
+        <!-- メールフォーム -->
+        <div class="row" style="margin-top: 20px;">
+            <label class="col-lg-2">メールアドレス</label>
+            <div class="col-lg-3 col-lg-offset-1">
+                <%= f.email_field :email, class:"form-control" %>
+            </div>
+        </div>
+        <!-- メールフォーム -->
+
 	    <!-- 郵便番号・住所フォーム -->
 	    <div class="row" style="margin-top: 20px;">
-    		<label class="col-lg-2">郵便番号</label>
-    		<div class="col-lg-3">
+    		<label class="col-lg-2">郵便番号(ハイフンなし)</label>
+    		<div class="col-lg-3 col-lg-offset-1">
     			<%= f.text_field :postal_code, class:"form-control" %>
     		</div>
     	</div>
 
     	<div class="row" style="margin-top: 20px;">
     		<label class="col-lg-2">住所</label>
-    		<div class="col-lg-7">
+    		<div class="col-lg-7 col-lg-offset-1">
     			<%= f.text_field :address, class:"form-control" %>
     		</div>
     	</div>
     	<!-- 郵便番号・住所フォーム -->
 
-    	<!-- 電話番号・メールアドレスフォーム -->
+    	<!-- 電話番号フォーム -->
     	<div class="row" style="margin-top: 20px;">
-    		<label class="col-lg-2">電話番号</label>
-    		<div class="col-lg-3">
+    		<label class="col-lg-2">電話番号(ハイフンなし)</label>
+    		<div class="col-lg-3 col-lg-offset-1">
     			<%= f.text_field :telephone_number, class:"form-control" %>
     		</div>
     	</div>
-
-    	<div class="row" style="margin-top: 20px;">
-    		<label class="col-lg-2">メールアドレス</label>
-    		<div class="col-lg-3">
-    			<%= f.email_field :email, class:"form-control" %>
-    		</div>
-    	</div>
-    	<!-- 電話番号・メールアドレスフォーム -->
-
-    	<!-- 会員ステータス -->
-    	<div class="row" style="margin-top: 20px;">
-    		<label class="col-lg-2">会員ステータス</label>
-			<label class="col-lg-1"><%= f.radio_button :is_deleted, "false" %> 有効</label>
-    		<label class="col-lg-1"><%= f.radio_button :is_deleted, "true" %> 無効</label>
-    	</div>
-    	<!-- 会員ステータス -->
+        <!-- 電話番号フォーム -->
     	
     	<div class="row" style="margin-top: 20px;">
-  			<%= f.submit "変更を保存", class:"btn btn-primary" %>
+  			<%= f.submit "編集内容を保存する", class:"btn btn-primary", style:"margin-left: 300px; padding: 5px 30px;" %>
+            <%= link_to "退会する" , customers_customer_unsubscribe_path, class: "btn btn-danger", style:"margin-left: 380px; padding: 5px 30px;" %>
   		</div>
 		<% end %>
 	</div>

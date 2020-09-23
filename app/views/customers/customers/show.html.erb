@@ -1,0 +1,55 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12" style="margin: 20px 0 40px 100px;">
+			<span style="background-color: silver; font-size: 20px; padding: 5px 15px;">マイページ</span>
+		</div>
+		<p id="notice"><%= notice %></p>
+		<div class="col-xs-12">
+			<span style="font-size: 20px; margin-right: 15px;"><b>登録情報</b></span>
+			<%= link_to "編集する" , edit_customers_customer_path(@customer), class: "btn btn-primary", style:"margin-right: 10px; padding: 5px 20px;" %>
+			<%= link_to "パスワードを変更する" ,new_customer_password_path, class: "btn btn-primary", style:"padding: 5px 20px;" %>
+		</div>
+		<div class="col-xs-8" style="margin-top: 20px;">
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<td class="active col-xs-2">氏名</td>
+						<td>
+							<%= @customer.last_name %> <%= @customer.first_name %>
+						</td>
+					</tr>
+					<tr>
+						<td class="active  col-xs-2">フリガナ</td>
+						<td>
+							<%= @customer.last_name_kana %> <%= @customer.first_name_kana %>
+						</td>
+					</tr>
+					<tr>
+						<td class="active  col-xs-2">郵便番号</td>
+						<td><%= @customer.postal_code %></td>
+					</tr>
+					<tr>
+						<td class="active col-xs-2">住所</td>
+						<td><%= @customer.address %></td>
+					</tr>
+					<tr>
+						<td class="active col-xs-2">電話番号</td>
+						<td><%= @customer.telephone_number %></td>
+					</tr>
+					<tr>
+						<td class="active col-xs-2">メールアドレス</td>
+						<td><%= @customer.email %></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-xs-12" style="margin-top: 15px;">
+			<span style="font-size: 20px; margin-right: 35px;"><b>配送先</b></span>
+			<%= link_to "一覧を見る" , customers_addresses_path, class: "btn btn-primary", style:"margin-right: 10px; padding: 5px 30px;" %>
+		</div>
+		<div class="col-xs-12" style="margin-top: 15px;">
+			<span style="font-size: 20px; margin-right: 15px;"><b>注文履歴</b></span>
+			<%= link_to "一覧を見る" , customers_orders_path, class: "btn btn-primary", style:"margin-right: 10px; padding: 5px 30px;" %>
+		</div>
+	</div>
+</div>
