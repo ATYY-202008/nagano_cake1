@@ -2,7 +2,10 @@
     <div class="row" style="font-size: 30px;">商品新規登録</div>
     <div class="row">
         <%= form_with model:@item, url: admins_items_path do |f| %>
-            <div class="col-lg-4 col-lg-offset-1" style="padding-top: 320px;">
+            <div class="col-lg-4 col-lg-offset-1" style="padding-top: 70px">
+                <div class="item-image" style="margin-bottom: 30px;">
+                    <%= attachment_image_tag @item, :image, fallback: "noimage.png", size:"300x300" %>
+                </div>
                 <%= f.attachment_field :image %>
             </div>
             <div class="col-lg-3 col-lg-offset-1" style="margin-top: 100px;" >
@@ -32,5 +35,16 @@
                 </div>
             </div>
         <% end %>
+        <script>
+            $(document).on('turbolinks:load', function() {
+                $('#item_image').on('change', function (e) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $(".image").attr('src', e.target.result);
+                }
+                reader.readAsDataURL(e.target.files[0]);
+            });
+            });
+        </script>
     </div>
 </div>

@@ -2,7 +2,12 @@
     <div class="row" style="font-size: 30px;">商品編集</div>
     <div class="row">
         <%= form_with model:@item, url: admins_item_path,method: :patch do |f| %>
-            <div class="col-lg-5"class="col-lg-5" style="padding: 100px 0 0 100px;"><%= f.attachment_field :image %></div>
+            <div class="col-lg-5"class="col-lg-5" style="padding: 100px 0 0 100px;">
+                <div class="item-image" style="margin-bottom: 30px;">
+                    <%= attachment_image_tag @item, :image, fallback: "noimage.png", size:"300x300" %>
+                </div>
+                <%= f.attachment_field :image %>
+            </div>
             <div class="col-lg-3" style="margin-top: 100px;" >
                 <div class="row">
                     <%= f.label :商品名, style: "margin-right: 24px;" %>
@@ -29,5 +34,16 @@
                 </div>
             </div>
         <% end %>
+        <script>
+            $(document).on('turbolinks:load', function() {
+                $('#item_image').on('change', function (e) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $(".image").attr('src', e.target.result);
+                }
+                reader.readAsDataURL(e.target.files[0]);
+            });
+            });
+        </script>
     </div>
 </div>
