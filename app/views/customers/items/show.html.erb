@@ -34,8 +34,9 @@
 						<h2 style ="font-weight: bold;"><%=@item.name%></h2>
 						<p style ="font-size: 15px;"><%= @item.introduction %></p>
 						<p style ="font-size: 20px;">¥<%= @item.price %>(税込み)</p>
-						<%= form_for(@cart_item, url: customers_cart_items_path) do |f| %>
-							<%= f.number_field :amount, placeholder: "数量選択" %>
+						<%= form_with(model: [@item, @cart], local: true ,url: {controller: 'customers/cart_items', action: 'create'}) do |f| %>
+							<%= f.hidden_field :item_id, value: @item.id %>
+							<%= f.number_field :amount, value: 1, min:1 ,max:100 ,placeholder: "数量選択" %>
 							<%= f.submit "カートに入れる" %>
 						<% end %>
 					</div>
