@@ -17,7 +17,7 @@
         <%= form_with model:@item, url: admins_items_path do |f| %>
             <div class="col-lg-4 col-lg-offset-1" style="padding-top: 70px">
                 <div class="item-image" style="margin-bottom: 30px;">
-                    <%= attachment_image_tag @item, :image, fallback: "noimage.png", size:"300x300" %>
+                    <%= attachment_image_tag @item, :image, fallback: "noimage.png", size:"300x200" %>
                 </div>
                 <%= f.attachment_field :image %>
             </div>

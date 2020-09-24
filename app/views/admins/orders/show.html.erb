@@ -39,7 +39,7 @@
 				<tr>
 					<td style="padding: 5px 0 10px 5px; font-size: 20px;">注文ステータス</td>
 					<td style="padding: 15px 100px 10px 5px; font-size: 20px;">
-						<%= form_for(@order, url:"/admins/orders/#{@order.id}") do |f| %>
+						<%= form_with model: @order, url:"/admins/orders/#{@order.id}" do |f| %>
   							<label></label>
   							<%= f.select :status, Order.statuses.keys.to_a, {}, style: "padding: 5px 50px;" %>
   							<%= f.submit "更新", class: "btn btn-primary" %>
@@ -78,7 +78,17 @@
 								<%= (order_detail.price_tax * 1.1 * order_detail.amount).floor.to_s(:delimited, delimiter: ',') %>
 							</td>
 							<td class="text-center">
-								<%= form_for(order_detail, url:"/admins/order_details/#{order_detail.id}") do |f| %>
+
+								<!-- 自動更新機能 -->
+								<% if @order.status == "入金確認" %>
+									<% order_detail.update(making_status: "製作待ち") %>
+								<% end %>
+								<% if order_detail.making_status == "製作完了" %>
+									<% @order.update(status: "発送準備中") %>
+								<% end %>
+								<!-- 自動更新機能 -->
+
+								<%= form_with model:order_detail, url:"/admins/order_details/#{order_detail.id}" do |f| %>
 	  								<label></label>
 	  								<%= f.select :making_status, OrderDetail.making_statuses.keys.to_a, {}, style: "padding: 5px 50px;" %>
 	  								<%= f.submit "更新", class: "btn btn-primary", style: "margin-left:10px;" %>
