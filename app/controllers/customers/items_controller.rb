@@ -15,7 +15,7 @@ class Customers::ItemsController < ApplicationController
 	def show
 		@item = Item.find(params[:id])
 		@genres = Genre.where(is_active: true)
-		@cart_item = CartItem.new
+		@cart = @item.cart_items.build
 	end
 
 end

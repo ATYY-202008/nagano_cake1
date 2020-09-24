@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   	when Customer
   		customers_items_path
   	when Admin
-  		admins_items_path
+  		admins_top_path
   	end
   end
 
@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
   	flash[:notice]= "Signed out successfully."
   	root_path
   end
+
 
   protected
 

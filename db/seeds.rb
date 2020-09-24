@@ -8,5 +8,21 @@
 Admin.create!(
            	 email: "admin@gmail.com",
              password:  "11111111",
-             password_confirmation: "11111111",
+             password_confirmation: "11111111"
              )
+Genre.create!(
+			name: "ケーキ",
+			is_active: true
+			)
+Genre.create!(
+			name: "焼き菓子",
+			is_active: true
+			)
+Genre.create!(
+			name: "プリン",
+			is_active: true
+			)			
+Genre.create!(
+			name: "キャンディ",
+			is_active: true
+			)					

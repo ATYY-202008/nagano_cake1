@@ -1,12 +1,11 @@
 <div class="container">
     <h3>商品詳細</h3>
 	<div class="row">
-        <div class="col-lg-5">
-            <%= attachment_image_tag @item, :image%>
+        <div class="col-lg-5" style="padding: 100px 0 0 100px;">
+            <%= attachment_image_tag @item, :image, :fill, 300, 200, format: 'jpeg' %>
         </div>
-	
 
-        <div class= "col-lg-5 col-lg-offset-2" style= "margin-top:100px;">
+        <div class= "col-lg-5" style= "margin-top:100px;">
             <div class="row">
                 <div class="col-xs-4">商品名</div>
                 <div class="col-xs-6"><%= @item.name %></div>
@@ -17,14 +16,16 @@
             </div>
             <div class="row" style= "margin-top:20px;">
                 <div class="col-xs-4">ジャンル</div>
-                <div class="col-xs-6"><%= @genre.name %></div>
+                <div class="col-xs-6"><%= @item.genre.name %></div>
             </div>
             <div class="row" style= "margin-top:20px;">
                 <div class="col-xs-4">税込価格(税抜価格)</div>
-                <div class="col-xs-6"><%= @include_tax.floor%>（<%= @item.price %>）円</div>
+                <div class="col-xs-6">
+                    <%= @include_tax.floor.to_s(:delimited, delimiter: ',')%>（<%= @item.price.to_s(:delimited, delimiter: ',') %>）円
+                </div>
             </div>
             <div class="row" style= "margin-top:20px;">
-                <div class="col-xs-6">販売ステータス</div>
+                <div class="col-xs-4">販売ステータス</div>
                 <div class="col-xs-5">
                     <%if @item.is_active == true %>
                         <p>販売中</p>
