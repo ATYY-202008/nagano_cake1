@@ -31,3 +31,12 @@
 
 en:
   hello: "Hello world"
+en:
+  views:
+    pagination:
+      first: "・"
+      last: "・"
+      previous: "・"
+      next: "・"
+      truncate: "・"
+      truncate: "・"
