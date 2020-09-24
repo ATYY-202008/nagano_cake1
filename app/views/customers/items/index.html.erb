@@ -35,9 +35,9 @@
 					<div class ="clearfix">
 						<% @items.each do |item| %>
 							<div class ="item_box" style ="width: 200px; float:left; margin:30px 10px 0 0;">
-								<%= image_tag(item.image_id, style: "width: 200px; height: 130px;") %>
-								<a href ="/customers/items/<%= item.id %>"><%= item.name %></a>
-								<p>¥<%= item.price %></p>
+								<%= attachment_image_tag item, :image, :fill, 130, 100, format: 'jpeg' %>
+								<div class="row" style="margin: 10px 0 10px 5px;"><a href ="/customers/items/<%= item.id %>"><%= item.name %></a></div>
+								<div class="row" style="margin-left: 5px;"><p>¥<%= item.price.to_s(:delimited) %></p></div>
 							</div>
 						<% end %>
 					</div>

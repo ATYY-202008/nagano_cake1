@@ -20,10 +20,9 @@ Rails.application.routes.draw do
     namespace :customers do
 	    get 'homes/top' => 'homes#top', as: 'customer_top'
 		get 'homes/about' => 'homes#about', as: 'customer_about'
-		resources :customers, only: [:edit, :update]
-		resource :customers, only: [:show]
-		  get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'customer_unsubscribe'
-		  patch 'customers/withdraw' => 'customers#withdraw', as: 'customer_withdraw'
+		resource :customers, only: [:show,:edit, :update]
+		get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'customer_unsubscribe'
+		patch 'customers/withdraw' => 'customers#withdraw', as: 'customer_withdraw'
 		resources :orders, only: [:new, :index, :create, :show]
 		  post 'orders/confirm' => 'orders#confirm', as: 'order_confirm'
 		  get 'orders/thanks' => 'orders#thanks', as: 'order_thanks'
