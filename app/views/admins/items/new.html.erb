@@ -1,5 +1,18 @@
 <div class="container">
     <div class="row" style="font-size: 30px;">商品新規登録</div>
+    <div class='row'>
+      <% if @item.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@item.errors.count, "error") %> errors prohibited this obj from being saved:</h2>
+
+          <ul>
+            <% @item.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
     <div class="row">
         <%= form_with model:@item, url: admins_items_path do |f| %>
             <div class="col-lg-4 col-lg-offset-1" style="padding-top: 70px">
