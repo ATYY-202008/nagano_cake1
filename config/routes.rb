@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  namespace :admins do
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   #rootパス
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
 	    resources :orders, only: [:index, :show, :update]
 	    resources :order_details, only: [:update]
 	    resources :genres, only: [:index, :create, :edit, :update]
+		get 'search' => 'searches#search'
 	end
 
 	# 顧客用サイトのrouting

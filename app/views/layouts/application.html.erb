@@ -17,7 +17,7 @@
             <div style="width: 100px;height: 100px; float: left;"></div>NaganoCake
           </div>
           <div id="slidemenu">
-            <div class="list">
+            <div class="row list">
               <ul class="nav navbar-nav navbar-right" data-hover="color" data-animations="zoomIn fadeIn fadeInUp fadeIn" style="margin-top: 25px;">
                 <!-- customers -->
                 <% if customer_signed_in? %>
@@ -70,6 +70,15 @@
                   <li class="" style="border: 1px;">
                     <%= link_to destroy_admin_session_path, method: :delete do %>
                       <i class="glyphicon glyphicon-log-out" aria-hidden="true"></i> ログアウト
+                    <% end %>
+                  </li>
+                  <li class="" style="margin-top: 10px;">
+                    <%= form_with url: admins_search_path, method: :get, local: true do |f| %>
+                      <%= f.select :range ,options_for_select([['会員', '1'],['商品', '2']]) %>
+                      <%= f.text_field :word %>
+                      <%= button_tag :type => "submit" do %>
+                        <i class="fa fa-search"></i>
+                      <% end %>
                     <% end %>
                   </li>
                   <!-- ------ -->
