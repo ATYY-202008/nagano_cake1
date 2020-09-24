@@ -1,0 +1,122 @@
+<div class="col-lg-10 offset-1 space">
+    <div class="row">
+        <h2>注文履歴詳細</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="row space
+                <h3>注文情報</h3>
+            </div>
+            <div class="row">
+                <div class="container">
+                    <div class="row space-sm">
+                        <div class="col-lg-3">
+                            <strong>注文日</strong>
+                        </div>
+                        <div class="col-lg-9">
+                            <%= @order.created_at.strftime('%Y/%m/%d') %>
+                        </div>
+                    </div>
+                        <div class="row space-sm">
+                            <div class="col-lg-3">
+                                <strong>配送先</strong>
+                            </div>
+                            <div class="col-lg-9">
+                                <%= @order.address %>
+                            </div>
+                        </div>
+                        <div class="row space-sm">
+                            <div class="col-lg-3">
+                                <strong>支払方法</strong>
+                            </div>
+                            <div class="col-lg-9">
+                                <%= @order.payment_method %>
+                            </div>
+                        </div>
+                        <div class="row space-sm">
+                            <div class="col-lg-3">
+                                <strong>ステータス</strong>
+                            </div>
+
+                        <div class="col-lg-9">
+                            <%= @order.status %>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row space">
+            <h3>注文内容</h3>
+        </div>
+        <div class="d-none d-lg-block">
+            <div class="row">
+                <div class="col-lg-4">
+                    <strong>商品</strong>
+                </div>
+                <div class="col-lg-3">
+                    <strong>単価（税込）</strong>
+                </div>
+                <div class="col-lg-2">
+                    <strong>個数</strong>
+                </div>
+                <div class="col-lg-2">
+                    <strong>小計</strong>
+                </div>
+            </div>
+        </div>
+        <% sum_all = 0 %>
+        <% @order.order_details.each do |order_detail| %>
+        <div class="row space-sm">
+            <div class="col-lg-4">
+                <%= order_detail.item.name %>
+            </div>
+            <div class="col-lg-3">
+                <%= order_detail.price_tax %>
+            </div>
+            <div class="col-lg-2">
+                <%= order_detail.amount %>個
+            </div>
+            <div class="col-lg-2">
+                <%= sub_total = order_detail.price_tax.to_i * order_detail.amount %>円
+                <% sum_all += sub_total %>
+            </div>
+        </div>
+        <% end %>
+    </div>
+
+        <div class="col-lg-5">
+            <div class="row space">
+                <h3>請求情報</h3>
+            </div>
+            <div class="row">
+                <div class="container">
+                    <div class="row space-sm">
+                        <div class="col-lg-6">
+                            <strong>商品合計</strong>
+                        </div>
+                        <div class="col-6">
+                            <%= sum_all %>円
+                        </div>
+                    </div>
+                    <div class="row space-sm">
+                        <div class="col-lg-6">
+                            <strong>配送料</strong>
+                        </div>
+                        <div class="col-lg-6">
+                            <%= @order.shipping_cost %>円
+                        </div>
+                    </div>
+                    <div class="row space-sm">
+                        <div class="col-lg-6">
+                            <strong>ご請求額</strong>
+                        </div>
+                        <div class="col-lg-6">
+                            <%= sum_all + @order.shipping_cost.to_i %>円
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

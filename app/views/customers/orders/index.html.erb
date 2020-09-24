@@ -1,0 +1,49 @@
+<div class="col-lg-10 offset-1 space">
+    <div class="row">
+        <h2>注文履歴一覧</h2>
+    </div>
+
+    <div class="d-none d-lg-block space">
+        <div class="row">
+            <div class="col-lg-2">注文日</div>
+            <div class="col-lg-3">配送先</div>
+            <div class="col-lg-2">注文商品</div>
+            <div class="col-lg-2">支払金額</div>
+            <div class="col-lg-1">ステータス</div>
+            <div class="col-lg-2">注文詳細</div>
+        </div>
+    </div>
+
+    <% @orders.each do |order| %>
+    <div class="row space-sm">
+    <div class="col-lg-2">
+        <%= order.created_at.strftime('%Y/%m/%d') %>
+    </div>
+    <div class="col-lg-3">
+        <div class="row">
+            <%= order.postal_code + " " + order.address %>
+        </div>
+        <div class="row">
+            <%= order.name %>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <% sum_all = 0 %>
+        <% order.order_details.each do |order_detail| %>
+        <%= order_detail.item.name %><br>
+        <% sub_total = order_detail.price_tax.to_i * order_detail.amount %>
+        <% sum_all += sub_total.to_i %>
+        <% end %>
+    </div>
+    <div class="col-lg-2">
+        <%= sum_all += order.shipping_cost.to_i %>円
+    </div>
+    <div class="col-lg-1">
+        <%= order.status %>
+    </div>
+    <div class="col-lg-2">
+        <%= link_to '表示する', customers_order_path(order), class: "btn btn-sm btn-primary" %>
+    </div>
+    </div>
+    <% end %>
+</div>
