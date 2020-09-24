@@ -47,14 +47,16 @@
 
 						<!-- 売り切れ表示切り替え -->
 						<% if @item.is_active %>
-							<%= form_for(@cart_item, url: customers_cart_items_path) do |f| %>
-								<%= f.number_field :amount, placeholder: "数量選択" ,min:0 %>
+							<%= form_with(model: [@item, @cart], local: true ,url: {controller: 'customers/cart_items', action: 'create'}) do |f| %>
+								<%= f.hidden_field :item_id, value: @item.id %>
+								<%= f.number_field :amount, value: 1, min:1 ,max:100 ,placeholder: "数量選択" %>
 								<%= f.submit "カートに入れる" %>
 							<% end %>
 						<% else %>
-							<%= form_for(@cart_item, url: customers_cart_items_path) do |f| %>
+							<%= form_with(model: [@item, @cart], local: true ,url: {controller: 'customers/cart_items', action: 'create'}) do |f| %>
 								<fieldset disabled>
-									<%= f.number_field :amount, placeholder: "数量選択できません" %>
+									<%= f.hidden_field :item_id, value: @item.id %>
+									<%= f.number_field :amount, value: 1, min:1 ,max:100 ,placeholder: "数量選択できません" %>
 									<%= f.submit "カートに入れません" %>
 								</fieldset>
 							<% end %>
