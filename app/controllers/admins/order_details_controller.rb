@@ -9,11 +9,11 @@ class Admins::OrderDetailsController < ApplicationController
 		end
 
 		# 自動更新機能 
-		if @order_detail.making_status == "制作中" 
+		if @order_detail.making_status == "製作中" 
 			@order.update(status: "製作中") 
 		 end 
 		# 自動更新機能 
-		
+
 	end
 
 	private
