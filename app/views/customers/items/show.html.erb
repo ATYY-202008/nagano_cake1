@@ -31,14 +31,38 @@
 						<%= attachment_image_tag @item, :image, :fill, 300, 250, format: 'jpeg' %>
 					</div>
 					<div class ="col-xs-7">
-						<h2 style ="font-weight: bold;"><%=@item.name%></h2>
-						<p style ="font-size: 15px;"><%= @item.introduction %></p>
-						<p style ="font-size: 20px;">¥<%= @item.price %>(税込み)</p>
-						<%= form_with(model: [@item, @cart], local: true ,url: {controller: 'customers/cart_items', action: 'create'}) do |f| %>
-							<%= f.hidden_field :item_id, value: @item.id %>
-							<%= f.number_field :amount, value: 1, min:1 ,max:100 ,placeholder: "数量選択" %>
-							<%= f.submit "カートに入れる" %>
+
+						<!-- 売り切れ表示切り替え -->
+						<% if @item.is_active %>
+							<h2 style ="font-weight: bold;margin-bottom: 30px;"><%=@item.name%></h2>
+						<% else %>
+							<h2 style ="font-weight: bold;margin-bottom: 30px;">
+								<%=@item.name%> <span style="color: red;">(売り切れ)</span>
+							</h2>
 						<% end %>
+						<!-- 売り切れ表示切り替え -->
+						
+						<p style ="font-size: 15px;margin-bottom: 30px;"><%= @item.introduction %></p>
+						<p style ="font-size: 20px;margin-bottom: 30px;">¥<%= @item.price.to_s(:delimited) %>(税込み)</p>
+
+						<!-- 売り切れ表示切り替え -->
+						<% if @item.is_active %>
+							<%= form_with(model: [@item, @cart], local: true ,url: {controller: 'customers/cart_items', action: 'create'}) do |f| %>
+								<%= f.hidden_field :item_id, value: @item.id %>
+								<%= f.number_field :amount, value: 1, min:1 ,max:100 ,placeholder: "数量選択" %>
+								<%= f.submit "カートに入れる" %>
+							<% end %>
+						<% else %>
+							<%= form_with(model: [@item, @cart], local: true ,url: {controller: 'customers/cart_items', action: 'create'}) do |f| %>
+								<fieldset disabled>
+									<%= f.hidden_field :item_id, value: @item.id %>
+									<%= f.number_field :amount, value: 1, min:1 ,max:100 ,placeholder: "数量選択できません" %>
+									<%= f.submit "カートに入れません" %>
+								</fieldset>
+							<% end %>
+						<% end %>
+						<!-- 売り切れ表示切り替え -->
+
 					</div>
 				</div>
 			</div>
