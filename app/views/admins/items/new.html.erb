@@ -1,14 +1,15 @@
 <div class="container">
     <div class="row" style="font-size: 30px;">商品新規登録</div>
     <div class="row">
-        <%= form_with model:@item, url: admins_items_path do |f| %>
-            <div class="col-lg-4 col-lg-offset-1" style="padding-top: 70px">
+        <%= form_with model:@item, url: admins_items_path, local: true do |f| %>
+            <%= render "error_messages", item: @item %>
+            <div class="col-lg-4 col-lg-offset-1" style="padding-top: 30px">
                 <div class="item-image" style="margin-bottom: 30px;">
                     <%= attachment_image_tag @item, :image, fallback: "noimage.png", size:"300x200" %>
                 </div>
                 <%= f.attachment_field :image %>
             </div>
-            <div class="col-lg-3 col-lg-offset-1" style="margin-top: 100px;" >
+            <div class="col-lg-3 col-lg-offset-1" style="margin-top: 60px;" >
                 <div class="row">
                     <%= f.label :商品名, style: "margin-right: 24px;" %>
                     <%= f.text_field :name %>
