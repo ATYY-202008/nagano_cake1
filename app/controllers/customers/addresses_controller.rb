@@ -7,8 +7,12 @@ class Customers::AddressesController < ApplicationController
 
 	def create
 		@address = Address.new(address_params)
-		@address.save
-		redirect_to customers_addresses_path
+		if @address.save
+			redirect_to customers_addresses_path, notice: "You have creatad address successfully."
+		else
+			@addresses = Address.all
+			render 'index'
+		end
 	end
 
 	def edit
@@ -17,8 +21,11 @@ class Customers::AddressesController < ApplicationController
 
 	def update
 		@address = Address.find(params[:id])
-		@address.update(address_params)
-		redirect_to customers_addresses_path
+		if @address.update(address_params)
+			redirect_to customers_addresses_path, notice: "Address was successfully edited."
+		else
+			render 'edit'
+		end
 	end
 
 	def destroy
