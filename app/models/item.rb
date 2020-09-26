@@ -7,4 +7,12 @@ class Item < ApplicationRecord
   	def self.search(search, word)
 		@item_search = Item.where("name LIKE?","%#{word}%")
 	end
+
+	validates :name,presence: true
+	validates :image_id, presence: true
+	validates :introduction, presence: true
+	validates :price, presence: true
+	validates :is_active, inclusion: { in: [true,false] }
+
+
 end
