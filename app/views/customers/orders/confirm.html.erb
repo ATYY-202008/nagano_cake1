@@ -1,97 +1,62 @@
 <div class="container ">
-    <div class="row">
-        <h2>注文情報確認</h2>
+    <div class="row" style="margin-left:100px;">
+        <h3>注文情報確認</h3>
     </div>
 
     <%= form_with(model: @order, url: customers_order_confirm_path ) do |f| %>
 
-        <div class="row" style="margin-top: 100px;">
-            <div class="row">
-                <table class="table">
-                    <thead class="thead-gray">
-                        <tr>
-                            <th>商品名</th>
-                            <th width="40%"><space style="padding-left: 10px;"></space>単価（税込）</th>
-                            <th width="15%"><space style="padding-left: 10px;"></space>数量
-                            </th>
-                            <th>小計</th>
-                        </tr>
-                    </thead>
-                </div>
+        <div class="col-lg-8">
+            <table class="table table-bordered">
+            <tr class="active">
+                <th>商品名</th>
+                <th>単価(税込)</th>
+                <th>数量</th>
+                <th>小計</th>
+            </tr>
                 
 
                 <% sum_all = 0 %>
                 <% @cart_items.each do |cart_item| %>
                     <tr>
-                        <div class="col-lg-3">
-                            <%= link_to customers_item_path(cart_item.item) do %>
-                                <%= attachment_image_tag(@item, :image ) %>
-                            <% end %>
+                        <td style="line-height: 50px;"><%= attachment_image_tag @item, :image, :fill, 100, 100, format: 'jpeg'  %><%= cart_item.item.name %></td>
+                        <td style="line-height: 50px;"><%= (cart_item.item.price * 1.1).floor.to_s(:delimited, delimiter: ',') %>
                         </div>
-                        <div class="col-lg-2">
-                            <%= link_to customers_item_path(cart_item.item) do %>
-                                <%= cart_item.item.name %>
-                            <% end %>
-                        </div>
-                        <div class="col-lg-2">
-                            <%= (cart_item.item.price * 1.1).floor.to_s(:delimited, delimiter: ',') %>	
-                        </div>
-                        <div class="col-lg-2">
-                            <%= cart_item.amount.to_s(:delimited, delimiter: ',') %>
-                        </div>
-                        <div class="col-lg-2">
-                            <%= sum_all +=  (cart_item.item.price * 1.1 * cart_item.amount).floor %>
-                        </div>
-                    </div>
+                        <td style="line-height: 50px;"><%= cart_item.amount.to_s(:delimited, delimiter: ',') %></td>
+                        <td style="line-height: 50px;"><%= sum_all +=  (cart_item.item.price * 1.1 * cart_item.amount).floor %></td>
+                    </tr>
                 <% end %>
+                </table>
+        </div>
+
+        <div class="col-lg-4">
+            <table class="table table-bordered">
+                <tr><th class="active" style="line-height: 30px;">送料</th><td style="line-height: 30px;"><%= @order.shipping_cost.floor.to_s(:delimited, delimiter: ',') %>円</td></tr>
+                </div>
+
+                <tr><th class="active" style="line-height: 30px;">商品合計</th><td style="line-height: 30px;"><%= sum_all %>円</td></tr>
+
+                <tr><th class="active" style="line-height: 30px;">請求金額</th><td style="line-height: 30px;"><%= (@order.shipping_cost + sum_all).floor.to_s(:delimited, delimiter: ',')%>円
+                </td></tr>
             </table>
         </div>
 
-        <div class="row space">
-            <div class="col-lg-12">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <strong>送料</strong>
-                    </div>
-                    <div class="col-lg-3">
-                        <%= @order.shipping_cost.floor.to_s(:delimited, delimiter: ',') %>円
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3">
-                        <strong>商品合計</strong>
-                    </div>
-                    <div class="col-lg-3">
-                        <%= sum_all %>円
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3">
-                        <strong>ご請求額</strong>
-                    </div>
-                    <div class="col-lg-3">
-                        <%= (@order.shipping_cost + sum_all).floor.to_s(:delimited, delimiter: ',')%>円
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-lg-2" style="margin-left:20px">
+                <h4><strong>支払方法</strong></h4>
             </div>
-        </div>
-
-        <div class="row space-sm">
-            <div class="col-lg-2">
-                <h3>支払方法</h3>
-            </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4" style="margin:10px 100px 0 0">
                 <%= @order.payment_method %>
             </div>
         </div>
+        
 
-        <div class="row space-sm">
-            <div class="col-lg-2">
-                <h3>お届け先</h3>
+        <div class="row">
+            <div class="col-lg-2" style="margin-left:20px">
+                <h4><strong>お届け先</strong></h4>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4" style="margin-right:100px">
                 <%= @order.postal_code %>
-                <%= @order.address %>
+                <%= @order.address %><br>
                 <%= @order.name %>
             </div>
         </div>
@@ -106,8 +71,8 @@
             
 
 
-        <div class="row space">
-            <div class="col-lg-2 offset-lg-5">
+        <div class="row">
+            <div class="col-lg-2 offset-lg-5" style="margin:50px 0 0 420px" >
                 <%= f.submit "購入を確定する", class: "btn btn-success btn-lg" %>
             </div>
         </div>

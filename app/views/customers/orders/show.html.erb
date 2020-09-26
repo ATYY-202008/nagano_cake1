@@ -1,122 +1,51 @@
-<div class="col-lg-10 offset-1 space">
-    <div class="row">
-        <h2>注文履歴詳細</h2>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-4">
+            <h3>注文履歴詳細</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-8">
+            <h5>注文情報</h5>
+		<table class="table table-bordered">
+            <tr><th class="active">注文日</th><td><%= @order.created_at.strftime('%Y/%m/%d') %></td></tr>
+            <tr><th class="active">配送先</th><td><%= @order.address %></td></tr>
+            <tr><th class="active">支払方法</th><td><%= @order.payment_method%></td></tr>
+			<tr><th class="active">ステータス</th><td><%= @order.status %></td></tr>
+		</table>
+        </div>
+
+        <div class="col-lg-4">
+            <h5>請求情報</h5>
+            <% sum_all = 0 %>
+		<table class="table table-bordered">
+            <tr><th class="active">商品合計</th><td><%= @order.total_payment - @order.shipping_cost %>円</td></tr>              
+            <tr><th class="active">配送料</th><td><%= @order.shipping_cost %>円</td></tr>  
+            <tr><th class="active">ご請求額</th><td><%= @order.total_payment %>円</td></tr>
+		</table>
+    </div>
     </div>
 
     <div class="row">
-        <div class="col-lg-7">
-            <div class="row space
-                <h3>注文情報</h3>
-            </div>
-            <div class="row">
-                <div class="container">
-                    <div class="row space-sm">
-                        <div class="col-lg-3">
-                            <strong>注文日</strong>
-                        </div>
-                        <div class="col-lg-9">
-                            <%= @order.created_at.strftime('%Y/%m/%d') %>
-                        </div>
-                    </div>
-                        <div class="row space-sm">
-                            <div class="col-lg-3">
-                                <strong>配送先</strong>
-                            </div>
-                            <div class="col-lg-9">
-                                <%= @order.address %>
-                            </div>
-                        </div>
-                        <div class="row space-sm">
-                            <div class="col-lg-3">
-                                <strong>支払方法</strong>
-                            </div>
-                            <div class="col-lg-9">
-                                <%= @order.payment_method %>
-                            </div>
-                        </div>
-                        <div class="row space-sm">
-                            <div class="col-lg-3">
-                                <strong>ステータス</strong>
-                            </div>
+		<div class="col-lg-10">
+		<h5>注文内容</h5>
+                <table class="table table-bordered">
+                <tr class="active">
+                    <th>商品</th>
+                    <th>単価（税込）</th>
+                    <th>個数</th>
+                    <th>小計</th>
+                </tr>
 
-                        <div class="col-lg-9">
-                            <%= @order.status %>
-                        </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row space">
-            <h3>注文内容</h3>
-        </div>
-        <div class="d-none d-lg-block">
-            <div class="row">
-                <div class="col-lg-4">
-                    <strong>商品</strong>
-                </div>
-                <div class="col-lg-3">
-                    <strong>単価（税込）</strong>
-                </div>
-                <div class="col-lg-2">
-                    <strong>個数</strong>
-                </div>
-                <div class="col-lg-2">
-                    <strong>小計</strong>
-                </div>
-            </div>
-        </div>
-        <% sum_all = 0 %>
         <% @order.order_details.each do |order_detail| %>
-        <div class="row space-sm">
-            <div class="col-lg-4">
-                <%= order_detail.item.name %>
-            </div>
-            <div class="col-lg-3">
-                <%= order_detail.price_tax %>
-            </div>
-            <div class="col-lg-2">
-                <%= order_detail.amount %>個
-            </div>
-            <div class="col-lg-2">
-                <%= sub_total = order_detail.price_tax.to_i * order_detail.amount %>円
-                <% sum_all += sub_total %>
-            </div>
-        </div>
-        <% end %>
-    </div>
-
-        <div class="col-lg-5">
-            <div class="row space">
-                <h3>請求情報</h3>
-            </div>
-            <div class="row">
-                <div class="container">
-                    <div class="row space-sm">
-                        <div class="col-lg-6">
-                            <strong>商品合計</strong>
-                        </div>
-                        <div class="col-6">
-                            <%= sum_all %>円
-                        </div>
-                    </div>
-                    <div class="row space-sm">
-                        <div class="col-lg-6">
-                            <strong>配送料</strong>
-                        </div>
-                        <div class="col-lg-6">
-                            <%= @order.shipping_cost %>円
-                        </div>
-                    </div>
-                    <div class="row space-sm">
-                        <div class="col-lg-6">
-                            <strong>ご請求額</strong>
-                        </div>
-                        <div class="col-lg-6">
-                            <%= sum_all + @order.shipping_cost.to_i %>円
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <tr>
+                    <td><%= order_detail.item.name %></td>
+                    <td><%= order_detail.price_tax %></td>
+                    <td><%= order_detail.amount %>個</td>
+                    <td><%= order_detail.price_tax.to_i * order_detail.amount %>円</td>
+                </tr>
+                <% end %>
+                </table>
         </div>
     </div>
 </div>

@@ -46,7 +46,7 @@
                 <label><%= f.radio_button :add, 2, style: "display: inline-block" %>登録住所から選択</label><br>
                     <div class="row" style="margin: -10px 0 0 10px;">
                         <div class="col-lg-5">
-                            <%= f.collection_select :address, @customer.addresses, :id, :address, :size => "5", :style => "appearance: none" %>
+                            <%= f.collection_select :address, @customer.addresses, :id, :address,{} ,{:style =>"width: 500px;"} %>
                         </div>
                     </div>
             </p>
