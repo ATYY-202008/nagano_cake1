@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   	flash[:notice] = "Welcome! You have signed up successfully."
   	case resource
   	when Customer
-  		customers_items_path
+      customers_customer_top_path
   	when Admin
   		admins_top_path
   	end
@@ -13,7 +13,12 @@ class ApplicationController < ActionController::Base
 
   def after_sign_out_path_for(resource)
   	flash[:notice]= "Signed out successfully."
-  	root_path
+    case resource
+    when :customer
+      root_path
+    when :admin
+      new_admin_session_path
+    end
   end
 
 
