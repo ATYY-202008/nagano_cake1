@@ -12,7 +12,7 @@
 					<% @genres.each do |genre| %>
 						<tr>
 							<td style="padding: 15px 100px 10px 5px; font-size: 18px;">
-								<%= link_to genre.name, controller: customers_items_path(@genre) %>
+								<%= link_to( genre.name, controller: "customers/items", genre_id: genre.id) %>
 							</td>
 						</tr>
 					<% end %>

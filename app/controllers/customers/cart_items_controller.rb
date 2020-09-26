@@ -29,9 +29,6 @@ class Customers::CartItemsController < ApplicationController
 		@cart_item = CartItem.find(params[:id])
 		@cart_item.destroy
 		redirect_to customers_cart_items_path
-		if @cart_item = nil
-			customers_customer_top_path
-		end
 	end
 
 	def destroy_all

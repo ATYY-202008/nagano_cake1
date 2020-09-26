@@ -8,11 +8,15 @@ class Customer < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :addresses, dependent: :destroy
 
-def active_for_authentication?
+# 有効会員のみログインできる機能
+  def active_for_authentication?
     super && (self.is_deleted == false)
   end
+# 有効会員のみログインできる機能
 
 	def self.search(search, word)
 		@customer_search = Customer.where("last_name LIKE? OR first_name LIKE? OR last_name_kana LIKE?","%#{word}%","%#{word}%","%#{word}%")
 	end
+
+  validates :last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, presence: true
 end

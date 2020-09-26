@@ -28,9 +28,9 @@
 				<div class ="col-xs-12">
 					<!-- 商品一覧 -->
 					<% if params[:genre_id] %>
-						<h2 style ="margin-top :50px;"><span><%= @genre.name %></span>一覧<span style = "font-size :20px;">(全<%= @item %>件)</span></h2>
+						<h2 style ="margin-top :50px;"><span><%= @genre.name %></span> 一覧<span style = "font-size :20px;">(全<%= @item %>件)</span></h2>
 					<% else %>
-						<h2 style ="margin-top :50px;">商品一覧<span>(全<%= @item %>件)</span></h2>
+						<h2 style ="margin-top :50px;">商品一覧<span style = "font-size :20px;">(全<%= @item %>件)</span></h2>
 					<% end %>
 					<div class ="clearfix">
 						<% @items.each do |item| %>
