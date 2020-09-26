@@ -37,7 +37,13 @@
 							<div class ="item_box" style ="width: 200px; float:left; margin:30px 10px 0 0;">
 								<%= attachment_image_tag item, :image, :fill, 130, 100, format: 'jpeg' %>
 								<div class="row" style="margin: 10px 0 10px 5px;"><a href ="/customers/items/<%= item.id %>"><%= item.name %></a></div>
-								<div class="row" style="margin-left: 5px;"><p>¥<%= item.price.to_s(:delimited) %></p></div>
+								<div class="row" style="margin-left: 5px;">
+									<% if item.is_active %>
+										<p>¥<%= item.price.to_s(:delimited) %></p>
+									<% else %>
+										<p>¥<%= item.price.to_s(:delimited) %> <span style="color: red;">(売り切れ)</span></p>
+									<% end %>
+								</div>
 							</div>
 						<% end %>
 					</div>
