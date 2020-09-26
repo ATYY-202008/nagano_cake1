@@ -57,3 +57,14 @@
   background-size: cover;
   background-position: top center;
 }
+
+@font-face {
+  font-family: 'timeburnerbold';
+  src: font-url('timeburnerbold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.head-title {
+  font-family: 'timeburnerbold';
+}
