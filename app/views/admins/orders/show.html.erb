@@ -108,7 +108,7 @@
 				<tr>
 					<th style="padding: 15px 100px 10px 5px; font-size: 20px;">商品合計</th>
 					<td class="text-right" style="padding: 15px 100px 10px 5px; font-size: 20px;">
-						<%= @total_payment.floor.to_s(:delimited, delimiter: ',') %>円
+						<%= (@total_payment - @order.shipping_cost).to_s(:delimited, delimiter: ',') %>円
 					</td>
 				</tr>
 				<tr>
@@ -120,7 +120,7 @@
 				<tr>
 					<th style="padding: 15px 100px 10px 5px; font-size: 20px;">請求金額</th>
 					<td class="text-right" style="padding: 15px 100px 10px 5px; font-size: 20px;">
-						<%= @order_total_payment.floor.to_s(:delimited, delimiter: ',')%>円
+						<%= @total_payment.floor.to_s(:delimited, delimiter: ',') %>円
 					</td>
 				</tr>
 			</table>
