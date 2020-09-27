@@ -42,7 +42,7 @@
 						<% end %>
 						<!-- 売り切れ表示切り替え -->
 						<p style ="font-size: 15px;margin-bottom: 30px;"><%= @item.introduction %></p>
-						<p style ="font-size: 20px;margin-bottom: 30px;">¥<%= @item.price.to_s(:delimited) %>(税込み)</p>
+						<p style ="font-size: 20px;margin-bottom: 30px;">¥<%= (@item.price*1.1).floor.to_s(:delimited, delimiter: ',') %>(税込み)</p>
 						<!-- 売り切れ表示切り替え -->
 						<% if customer_signed_in? %>
 							<% if @item.is_active %>

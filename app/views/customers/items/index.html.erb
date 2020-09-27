@@ -41,7 +41,7 @@
 								<div class="row" style="margin: 10px 0 10px 5px;"><a href ="/customers/items/<%= item.id %>"><%= item.name %></a></div>
 								<div class="row" style="margin-left: 5px;">
 									<% if item.is_active %>
-										<p>¥<%= item.price.to_s(:delimited) %></p>
+										<p>¥<%= (item.price*1.1).floor.to_s(:delimited, delimiter: ',') %></p>
 									<% else %>
 										<p>¥<%= item.price.to_s(:delimited) %> <span style="color: red;">(売り切れ)</span></p>
 									<% end %>

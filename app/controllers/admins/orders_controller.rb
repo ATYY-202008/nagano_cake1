@@ -5,7 +5,7 @@ class Admins::OrdersController < ApplicationController
 	def show
 		@order = Order.find(params[:id])
 		@order_details = @order.order_details
-		@total_payment = @order.total_payment * 1.1
+		@total_payment = @order.total_payment
 		@order_total_payment =  @order.shipping_cost + @total_payment
 	end
 	def update

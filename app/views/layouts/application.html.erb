@@ -13,9 +13,11 @@
     <div class="header" id="header">
       <nav class="navbar navbar-main navbar-default" role="navigation" id="slide-nav" style="background-color: #222222; border-color: #222222; border-radius: 0px; height: 100px;">
         <div class="container relative">
-          <div class="navbar-header" style="color: white;line-height: 100px;font-size: 20px;">
-            <div class="head-title" style="width: 100px;height: 100px; float: left;font-size: 30px;">NaganoCake</div>
-          </div>
+          <%= link_to root_path  do %>
+            <div class="navbar-header" style="color: white;line-height: 100px;font-size: 20px;">
+               <div class="head-title" style="width: 100px;height: 100px; float: left;font-size: 30px;">NaganoCake</div>
+            </div>
+          <% end %>
           <div id="slidemenu">
             <div class="row list">
               <ul class="nav navbar-nav navbar-right" data-hover="color" data-animations="zoomIn fadeIn fadeInUp fadeIn" style="margin-top: 25px;">

@@ -1,5 +1,6 @@
 class Admins::AdminsController < ApplicationController
 	def top
-		@orders_count = Order.where(created_at: 1.day.ago.in_time_zone("Tokyo").all_day).count
+		@orders = Order.all
+		@orders_count = @orders.where(created_at: (Time.now.midnight - 1.day)..Time.now.midnight).count
 	end
 end
