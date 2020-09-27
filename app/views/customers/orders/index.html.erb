@@ -17,18 +17,18 @@
 
     <% @orders.each do |order| %>
         <tr>
+            <% order_details = OrderDetail.where(order_id:order.id) %>
             <td style="line-height: 90px;"><%= order.created_at.strftime('%Y/%m/%d') %></td>
             <td style="line-height: 30px;"><%= order.postal_code%><br><%= order.address %><br><%= order.name %></td>
-            <td style="line-height: 30px;">
-                <% order.order_details.each do |order_detail| %>
+            <td style="line-height: 30px;"><% order.order_details.each do |order_detail| %>
                 <%= order_detail.item.name %><br>
                 <% end %>
             </td>
-            
+                
             <td style="line-height: 90px;"><%= order.total_payment %>円</td>
             <td style="line-height: 90px;"><%= order.status %></td>
             <td style="line-height: 90px;"><%= link_to '表示する', customers_order_path(order), class: "btn btn-sm btn-primary" %></td>
         </tr>
-        <% end %>
+    <% end %>
     </table>
 </div>

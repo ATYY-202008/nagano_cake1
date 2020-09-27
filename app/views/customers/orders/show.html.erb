@@ -40,9 +40,9 @@
         <% @order.order_details.each do |order_detail| %>
                 <tr>
                     <td><%= order_detail.item.name %></td>
-                    <td><%= order_detail.price_tax %></td>
+                    <td><%= (order_detail.price_tax * 1.1).floor.to_s(:delimited, delimiter: ',') %></td>
                     <td><%= order_detail.amount %>個</td>
-                    <td><%= order_detail.price_tax.to_i * order_detail.amount %>円</td>
+                    <td><%= (order_detail.price_tax * 1.1 * order_detail.amount).floor.to_s(:delimited, delimiter: ',') %></td>
                 </tr>
                 <% end %>
                 </table>

@@ -46,7 +46,7 @@
                 <label><%= f.radio_button :add, 2, style: "display: inline-block" %>登録住所から選択</label><br>
                     <div class="row" style="margin: -10px 0 0 10px;">
                         <div class="col-lg-5">
-                            <%= f.collection_select :address, @customer.addresses, :id, :address,{} ,{:style =>"width: 500px;"} %>
+                            <%= f.collection_select :address_id, @customer.addresses, :id, :address,{} ,{:style =>"width: 500px;"} %>
                         </div>
                     </div>
             </p>
@@ -63,7 +63,7 @@
                         <strong>郵便番号(ハイフンなし)</strong>
                     </div>
                     <div class="col-lg-3" style="margin: 0 0 10px -20px;">
-                        <%= na.text_field :post_code, class: 'form-control' %>
+                        <%= na.text_field :postal_code, class: 'form-control' %>
                     </div>
                 </div>
 
@@ -81,7 +81,7 @@
                         <strong>宛名</strong>
                     </div>
                     <div class="col-lg-3" style="margin: 0 0 10px -20px;">
-                        <%= na.text_field :addressee, class: 'form-control' %>
+                        <%= na.text_field :name, class: 'form-control' %>
                     </div>
                 </div>
                 <% end %>
