@@ -1,5 +1,5 @@
 class Admins::SearchesController < ApplicationController
-
+	before_action :authenticate_admin!
   def search
 		@range = params[:range]
 		search = params[:search]
