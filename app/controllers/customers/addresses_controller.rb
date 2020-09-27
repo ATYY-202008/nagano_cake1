@@ -7,6 +7,7 @@ class Customers::AddressesController < ApplicationController
 
 	def create
 		@address = Address.new(address_params)
+		@address.customer_id = current_customer.id
 		if @address.save
 			redirect_to customers_addresses_path, notice: "You have creatad address successfully."
 		else

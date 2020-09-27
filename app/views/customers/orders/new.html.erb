@@ -1,0 +1,99 @@
+<div class="container">
+    <div class="col-lg-10 offset-1 space">
+        <div class="row" style="margin-left: 100px">
+            <div class="col-lg-4">
+                <h2>注文情報入力</h2>
+            </div>
+        </div>
+
+        <%= form_with(model: @order, local: true, url: {action: 'confirm'}) do |f| %>
+
+        <div class="row space">
+            <h3><strong><%= f.label :支払方法 %></strong></h3>
+        </div>
+
+        <div class="row" style="margin-left: 10px">
+            <div class="col-lg-4 btn-group">
+                <label class="btn" style="margin-top: -10px">
+                    <%= f.radio_button :payment_method, "クレジットカード", {checked: true} %>クレジットカード
+                </label><br>
+                <label class="btn" style="margin: -10px 100px -10px 0">
+                    <%= f.radio_button :payment_method, "銀行振込", {} %>銀行振込
+                </label>
+            </div>
+        </div>
+
+        <div class="row space">
+            <h3><strong><%= f.label :お届け先 %></strong></h3>
+        </div>
+
+        <div class="row" style="margin-left: 50px;">
+            <p class ="row" style="margin-top: -10px">
+                <label><%= f.radio_button :add, 1, checked: true, checked: "checked" %>ご自身の住所</label><br>
+                    <div class="row" style="margin: -15px 0 10px 0px;">
+                        <div class="col-xs-9">
+                            <%= @customer.postal_code %><%= @customer.address %>
+                        </div><br>
+                        <div class="col-xs-3">
+                            <%= @customer.last_name %><%= @customer.first_name %>
+                        </div>
+                    </div>
+            </p>
+        </div>
+
+        <div class="row space" style="margin-left: 50px">
+            <p class ="row" style="margin-top: -10px">
+                <label><%= f.radio_button :add, 2, style: "display: inline-block" %>登録住所から選択</label><br>
+                    <div class="row" style="margin: -10px 0 0 10px;">
+                        <div class="col-lg-5">
+                            <%= f.collection_select :address_id, @customer.addresses, :id, :address,{} ,{:style =>"width: 500px;"} %>
+                        </div>
+                    </div>
+            </p>
+        </div>
+
+        <div class="row space-sm" style="margin-left: 40px">
+            <p><label><%= f.radio_button :add, 3 %>新しいお届け先</label></p>
+            </div>
+        <div class="row" style="margin-left: 50px;">
+            <div class="col-lg-12">
+                <%= f.fields_for :new_add do |na| %>
+                <div class="row" style="margin-top: 5px">
+                    <div class="col-lg-3">
+                        <strong>郵便番号(ハイフンなし)</strong>
+                    </div>
+                    <div class="col-lg-3" style="margin: 0 0 10px -20px;">
+                        <%= na.text_field :postal_code, class: 'form-control' %>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 5px">
+                    <div class="col-lg-3">
+                        <strong>住所</strong>
+                    </div>
+                    <div class="col-lg-6" style="margin: 0 0 10px -20px;">
+                        <%= na.text_field :address, class: 'form-control' %>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 5px">
+                    <div class="col-lg-3">
+                        <strong>宛名</strong>
+                    </div>
+                    <div class="col-lg-3" style="margin: 0 0 10px -20px;">
+                        <%= na.text_field :name, class: 'form-control' %>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+
+        <div class="row space" style="margin-left: 400px">
+            <div class="col-lg-2 offset-lg-7" >
+                <%= f.submit "確認画面へ進む", class: "btn btn-primary"%>
+            </div>
+        </div>
+
+        <% end %>
+    </div>
+</div>
