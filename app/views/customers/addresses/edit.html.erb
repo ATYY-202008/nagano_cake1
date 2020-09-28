@@ -1,0 +1,33 @@
+<div class="container">
+	<div class="row" style="margin-left: 50px;font-size: 30px;">配送先編集</div>
+	<div class='row'>
+      <% if @address.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@address.errors.count, "error") %> errors prohibited this obj from being saved:</h2>
+
+          <ul>
+            <% @address.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+	<div class="row" style="margin-top: 30px;">
+		<%= form_for @address, url: customers_address_path(@address) do |f| %>
+			<div class="row">
+				<div class="col-xs-3">郵便番号（ハイフンなし）</div>
+				<div class="col-xs-3"><%= f.text_field :postal_code,class: "form-control" %></div>
+			</div>
+			<div class="row" style="margin-top: 15px;">
+				<div class="col-xs-3">住所</div>
+				<div class="col-xs-5"><%= f.text_field :address,class: "form-control" %></div>
+			</div>
+			<div class="row" style="margin-top: 15px;">
+				<div class="col-xs-3">宛名</div>
+				<div class="col-xs-3"><%= f.text_field :name,class: "form-control" %></div>
+				<div class="col-xs-2 col-xs-offset-2"><%= f.submit "編集する",class: "btn btn-primary btn-block" %></div>
+			</div>
+		<% end %>
+	</div>
+</div>

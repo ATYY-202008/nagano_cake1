@@ -1,0 +1,67 @@
+<div class="container">
+	<div class="row" style="margin-left: 50px;font-size: 30px;">配送先登録/一覧</div>
+	<div class="row">
+	  	<% if flash[:notice] %>
+	  		<p><%= flash[:notice] %></p>
+	  	<% end %>
+	</div>
+	<div class='row'>
+      <% if @address.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@address.errors.count, "error") %> errors prohibited this obj from being saved:</h2>
+
+          <ul>
+            <% @address.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+	<!-- 配送先の登録 -->
+	<div class="row" style="margin-top: 30px;">
+		<%= form_for @address, url: customers_addresses_path do |f| %>
+			<div class="row">
+				<div class="col-xs-3">郵便番号（ハイフンなし）</div>
+				<div class="col-xs-3"><%= f.text_field :postal_code,class: "form-control" %></div>
+			</div>
+			<div class="row" style="margin-top: 15px;">
+				<div class="col-xs-3">住所</div>
+				<div class="col-xs-5"><%= f.text_field :address,class: "form-control" %></div>
+			</div>
+			<div class="row" style="margin-top: 15px;">
+				<div class="col-xs-3">宛名</div>
+				<div class="col-xs-3"><%= f.text_field :name,class: "form-control" %></div>
+				<div class="col-xs-2 col-xs-offset-2"><%= f.submit "登録する",class: "btn btn-success btn-block" %></div>
+			</div>
+		<% end %>
+	</div>
+	<!-- ---------------- -->
+	<!-- 一覧 -->
+	<div class="row" style="margin-top: 100px;">
+		<table border="1" width="700">
+			<div class="row">
+				<tr>
+					<th width="15%"><space style="padding-left: 10px;"></space>郵便番号</th>
+					<th width="40%"><space style="padding-left: 10px;"></space>住所</th>
+					<th width="15%"><space style="padding-left: 10px;"></space>宛名</th>
+					<th></th>
+				</tr>
+			</div>
+			<div class="row">
+				<% @addresses.each do |address| %>
+					<tr>
+						<td><space style="padding-left: 10px;"></space><%= address.postal_code %></td>
+						<td><space style="padding-left: 10px;"></space><%= address.address %></td>
+						<td><space style="padding-left: 10px;"></space><%= address.name %></td>
+						<td>
+							<div style="float: left;padding-left: 20px;line-height: 35px;"><%= link_to "編集する", edit_customers_address_path(address.id), class: "btn btn-primary", :style=>"height:30px;"%></div>
+							<div style="float: left;margin-left: 10px;line-height: 35px;"><%= link_to "削除する", customers_address_path(address), method: :delete ,class: "btn btn-danger", :style=>"height:30px;" %></div>
+						</td>
+					</tr>
+				<% end %>
+			</div>
+		</table>
+	</div>
+	<!-- --------------- -->
+</div>

@@ -13,6 +13,80 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap-sprockets";  
+@import "bootstrap-sprockets";
 @import "bootstrap";
-@import "font-awesome"
+@import "font-awesome";
+
+.navbar .nav > li > a:hover {
+	color: white;
+	border: 1px solid white;
+	border-radius: 5px;
+}
+.navbar .nav > li {
+	margin-right: 10px;
+}
+.icon {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  border-radius: 50%;
+  border-right: 3px solid #ccc;
+  border-bottom: 3px solid #ccc;
+}
+
+.icon::before, .icon--plus::after {
+  position: absolute;
+  top: 23px;
+  left: 50%;
+  content: '';
+  display: inline-block;
+  width: 35px;
+  height: 13px;
+  border-top: 4px solid #999999;
+  transform: translateX(-50%);
+}
+
+.icon--plus:after {
+  top: 17px;
+  left: 2px;
+  transform: rotate(90deg);
+}
+.navbar {
+  background-image: url(header1.jpg);
+  background-size: cover;
+  background-position: top center;
+}
+
+@font-face {
+  font-family: 'timeburnerbold';
+  src: font-url('timeburnerbold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.head-title {
+  font-family: 'timeburnerbold';
+}
+
+.relative {
+  position: relative;
+}
+.link {
+  position: absolute;
+  top: 150px; 
+  right: 230px;
+}
+.form-interval {
+  margin-top: 20px;
+}
+.new_item_submit {
+  margin-top: 30px; 
+  margin-left: 130px;
+}
+.admin_customers_interval {
+  padding: 15px 100px 10px 5px;
+}
+.admin_customers_link {
+  margin:40px 10px 0 0;
+}

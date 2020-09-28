@@ -1,0 +1,86 @@
+<div class="container">
+	<div class="row">
+	   <h2>登録情報編集</h2>
+
+		<!-- エラー文 -->
+		<% if @customer.errors.any? %>
+      <h2><%= @customer.errors.count %>件のエラーが発生しました。</h2>
+      <ul>
+      	<% @customer.errors.full_messages.each do |message| %>
+        	<li><%= message %></li>
+      	<% end %>
+      </ul>
+  	<% end %>
+  	<!-- エラー文 -->
+
+		<%= form_for(@customer, url:"/customers/customers") do |f| %>
+
+			<!-- 氏名フォーム -->
+			<div class="row" style="margin-top: 20px;">
+	    	<label class="col-lg-1">氏名</label>
+            <div class="col-lg-1 col-lg-offset-1" style="text-align: right;">(姓)</div>
+	    	<div class="col-lg-3">
+	    		<%= f.text_field :last_name, autofocus: true, class:"form-control" %>
+	    	</div>
+            <div class="col-lg-1" style="text-align: right;">(名)</div>
+	    	<div class="col-lg-3">
+	    		<%= f.text_field :first_name, class:"form-control" %>
+	    	</div>
+    	</div>
+    	<!-- 氏名フォーム -->
+
+    	<!-- フリガナフォーム -->
+    	<div class="row" style="margin-top: 20px;">
+	    	<label class="col-lg-2">フリガナ</label>
+            <div class="col-lg-1" style="text-align: right;">(セイ)</div>
+	    	<div class="col-lg-3">
+	           <%= f.text_field :last_name_kana, class:"form-control" %>
+	    	</div>
+            <div class="col-lg-1" style="text-align: right;">(メイ)</div>
+	    	<div class="col-lg-3">
+	    		<%= f.text_field :first_name_kana, class:"form-control" %>
+	    	</div>
+	    </div>
+	    <!-- フリガナフォーム -->
+
+        <!-- メールフォーム -->
+        <div class="row" style="margin-top: 20px;">
+            <label class="col-lg-2">メールアドレス</label>
+            <div class="col-lg-3 col-lg-offset-1">
+                <%= f.email_field :email, class:"form-control" %>
+            </div>
+        </div>
+        <!-- メールフォーム -->
+
+	    <!-- 郵便番号・住所フォーム -->
+	    <div class="row" style="margin-top: 20px;">
+    		<label class="col-lg-2">郵便番号(ハイフンなし)</label>
+    		<div class="col-lg-3 col-lg-offset-1">
+    			<%= f.text_field :postal_code, class:"form-control" %>
+    		</div>
+    	</div>
+
+    	<div class="row" style="margin-top: 20px;">
+    		<label class="col-lg-2">住所</label>
+    		<div class="col-lg-7 col-lg-offset-1">
+    			<%= f.text_field :address, class:"form-control" %>
+    		</div>
+    	</div>
+    	<!-- 郵便番号・住所フォーム -->
+
+    	<!-- 電話番号フォーム -->
+    	<div class="row" style="margin-top: 20px;">
+    		<label class="col-lg-2">電話番号(ハイフンなし)</label>
+    		<div class="col-lg-3 col-lg-offset-1">
+    			<%= f.text_field :telephone_number, class:"form-control" %>
+    		</div>
+    	</div>
+        <!-- 電話番号フォーム -->
+    	
+    	<div class="row" style="margin-top: 20px;">
+  			<%= f.submit "編集内容を保存する", class:"btn btn-primary", style:"margin-left: 300px; padding: 5px 30px;" %>
+            <%= link_to "退会する" , customers_customer_unsubscribe_path, class: "btn btn-danger", style:"margin-left: 380px; padding: 5px 30px;" %>
+  		</div>
+		<% end %>
+	</div>
+</div>

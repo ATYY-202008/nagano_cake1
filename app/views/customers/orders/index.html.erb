@@ -1,0 +1,46 @@
+<div class="container">
+	<div class="row">
+        <div class="col-lg-3">
+            <h3>注文履歴一覧</h3>
+        </div>
+    </div>
+
+    <table class="table table-bordered">
+        <tr class="active">
+            <th>注文日</th>
+            <th>配送先</th>
+            <th>注文商品</th>
+            <th>支払金額</th>
+            <th>ステータス</th>
+            <th>注文詳細</th>
+        </tr>
+
+    <% @orders.each do |order| %>
+        <tr>
+            <% order_details = OrderDetail.where(order_id:order.id) %>
+            <td style="line-height: 90px;"><%= order.created_at.strftime('%Y/%m/%d') %></td>
+            <td style="line-height: 30px;"><%= order.postal_code%><br><%= order.address %><br><%= order.name %></td>
+            <td style="line-height: 30px;"><% order.order_details.each do |order_detail| %>
+                <%= order_detail.item.name %><br>
+                <% end %>
+            </td>
+                
+            <td style="line-height: 90px;"><%= order.total_payment %>円</td>
+            <td style="line-height: 90px;">
+                <% if order.status == "入金待ち" %>
+                    <p>入金待ち</p>
+                <% elsif order.status == "入金確認" %>
+                    <p>入金確認</p>
+                <% elsif order.status == "製作中" %>
+                    <p>製作中</p>
+                <% elsif order.status == "発送準備中" %>
+                    <p>発送準備中</p>
+                <% else %>
+                    <p>発送済み</p>
+                <% end %>
+            </td>
+            <td style="line-height: 90px;"><%= link_to '表示する', customers_order_path(order), class: "btn btn-sm btn-primary" %></td>
+        </tr>
+    <% end %>
+    </table>
+</div>

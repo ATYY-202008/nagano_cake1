@@ -26,14 +26,6 @@ ActiveRecord::Schema.define(version: 2020_09_16_114649) do
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
-    t.string "last_name"
-    t.string "first_name"
-    t.string "last_name_kana"
-    t.string "first_name_kana"
-    t.string "postal_code"
-    t.string "address"
-    t.string "telephone_number"
-    t.boolean "is_deleted"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -54,6 +46,14 @@ ActiveRecord::Schema.define(version: 2020_09_16_114649) do
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
+    t.string "last_name"
+    t.string "first_name"
+    t.string "last_name_kana"
+    t.string "first_name_kana"
+    t.string "postal_code"
+    t.string "address"
+    t.string "telephone_number"
+    t.boolean "is_deleted", default: false, null: false
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2020_09_16_114649) do
     t.integer "item_id"
     t.integer "price_tax"
     t.integer "amount"
-    t.integer "making_status"
+    t.integer "making_status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -96,8 +96,8 @@ ActiveRecord::Schema.define(version: 2020_09_16_114649) do
     t.string "name"
     t.integer "shipping_cost"
     t.integer "total_payment"
-    t.integer "payment_method"
-    t.integer "status"
+    t.integer "payment_method", null: false
+    t.integer "status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

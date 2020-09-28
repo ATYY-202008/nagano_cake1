@@ -1,0 +1,73 @@
+<div class ="container">
+	<div class ="row">
+		<div class ="col-xs-3">
+			<!-- ジャンル検索 -->
+			<table style="margin-top:50px; border: 1px solid black;">
+				<thead>
+						<tr>
+							<th class="text-center" style="font-size: 20px; border-bottom: 1px solid black; padding: 5px;">ジャンル検索</th>
+						</tr>
+				</thead>
+				<tbody>
+					<% @genres.each do |genre| %>
+						<tr>
+							<td style ="padding: 15px 100px 10px 5px; font-size: 18px; ">
+								<%= link_to( genre.name, controller: "customers/items", genre_id: genre.id) %>
+							</td>
+						</tr>
+					<% end %>
+					<tr>
+						<td style ="padding: 15px 100px 150px 5px;"></td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- ジャンル検索 -->
+		</div>
+		<div class ="col-xs-9">
+			<!-- 商品詳細 -->
+			<div class ="row">
+				<div class ="introduction_box" style = "margin: 50px auto;">
+					<div class ="col-xs-5">
+						<%= attachment_image_tag @item, :image, :fill, 300, 250, format: 'jpeg' %>
+					</div>
+					<div class ="col-xs-7">
+
+						<!-- 売り切れ表示切り替え -->
+						<% if @item.is_active %>
+							<h2 style ="font-weight: bold;margin-bottom: 30px;"><%=@item.name%></h2>
+						<% else %>
+							<h2 style ="font-weight: bold;margin-bottom: 30px;">
+								<%=@item.name%> <span style="color: red;">(売り切れ)</span>
+							</h2>
+						<% end %>
+						<!-- 売り切れ表示切り替え -->
+						<p style ="font-size: 15px;margin-bottom: 30px;"><%= @item.introduction %></p>
+						<p style ="font-size: 20px;margin-bottom: 30px;">¥<%= (@item.price*1.1).floor.to_s(:delimited, delimiter: ',') %>(税込み)</p>
+						<!-- 売り切れ表示切り替え -->
+						<% if customer_signed_in? %>
+							<% if @item.is_active %>
+								<%= form_with(model: [@item, @cart], local: true ,url: {controller: 'customers/cart_items', action: 'create'}) do |f| %>
+									<%= f.hidden_field :item_id, value: @item.id %>
+									<%= f.number_field :amount, value: 1, min:1 ,max:100 %>
+									<%= f.submit "カートに入れる",class: "btn btn-success" %>
+								<% end %>
+							<% else %>
+								<%= form_with(model: [@item, @cart], local: true ,url: {controller: 'customers/cart_items', action: 'create'}) do |f| %>
+									<fieldset disabled>
+										<%= f.hidden_field :item_id, value: @item.id %>
+										<%= f.number_field :amount, value: 1, min:1 ,max:100 ,placeholder: "数量選択できません" %>
+										<%= f.submit "カートに入れません" %>
+									</fieldset>
+								<% end %>
+							<% end %>
+						<% else %>
+							<p>※購入するには会員登録が必要です。</p>
+						<% end%>
+						<!-- 売り切れ表示切り替え -->
+					</div>
+				</div>
+			</div>
+			<!-- 商品詳細 -->
+		</div>
+	</div>
+</div>

@@ -1,0 +1,39 @@
+<div class = "container">
+	<div class ="row">
+		<div class ="col-xs-offset-1 col-xs-10">
+			<!-- ショッピングカート -->
+			<div class ="row">
+				<h2 style ="display: inline; padding-right: 450px;">ショッピングカート</h2>
+				<i class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i>
+				現在 <span style ="font-size: 30px;"><%= @cart_items.count %></span> 商品入っています
+			</div>
+			<table class ="table table-hover table-inverse" style = "width: 100%; margin-top:30px; ">
+				<thead>
+					<tr style ="padding:20px 0;">
+						<th >商品名</th>
+						<th>単価(税込)</th>
+						<th >数量</th>
+						<th >小計</th>
+						<th ></th>
+					</tr>
+				</thead>
+				<tbody id ="item_amount"><%= render 'item', cart_item: @cart_item, cart_items: @cart_items %></tbody>
+			</table>
+			<div class ="row">
+				<h3 style ="text-align: right;">合計 ¥<%= @sum.floor.to_s(:delimited, delimiter: ',')%></h3>
+			</div>
+			<div class ="row" style ="margin-top: 30px;">
+				<div class ="col-xs-3 text-center">
+					<div style ="line-height:center;"><%= link_to "買い物続ける", customers_customer_top_path, class: "btn btn-primary" %></div>
+				</div>
+				<div class ="col-xs-6 text-center">
+					<%= link_to "注文へ進む", new_customers_order_path ,class: "btn btn-success" %>
+				</div>
+				<div class ="col-xs-3 text-center" >
+					<%= link_to "カート空にする", destroy_all_customers_cart_items_path, method: :delete, class: "btn btn-danger" %>
+				</div>
+			</div>
+			<!-- ショッピングカート -->
+		</div>
+	</div>
+</div>
