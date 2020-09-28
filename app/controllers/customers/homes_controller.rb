@@ -1,4 +1,5 @@
 class Customers::HomesController < ApplicationController
+	before_action :authenticate_customer!
 	def top
 		@genres = Genre.where(is_active: true)
 		if OrderDetail.exists?(id: 1)
