@@ -14,13 +14,13 @@
 			<tr>
                 <th class="active">ステータス</th>
                 <td>
-                <% if order.status == "入金待ち" %>
+                <% if @order.status == "入金待ち" %>
                     <p>入金待ち</p>
-                <% elsif order.status == "入金確認" %>
+                <% elsif @order.status == "入金確認" %>
                     <p>入金確認</p>
-                <% elsif order.status == "製作中" %>
+                <% elsif @order.status == "製作中" %>
                     <p>製作中</p>
-                <% elsif order.status == "発送準備中" %>
+                <% elsif @order.status == "発送準備中" %>
                     <p>発送準備中</p>
                 <% else %>
                     <p>発送済み</p>
