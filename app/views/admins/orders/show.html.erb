@@ -82,9 +82,7 @@
 								<% if @order.status == "入金確認" %>
 									<% order_detail.update(making_status: "製作待ち") %>
 								<% end %>
-								<% if order_detail.making_status == "製作完了" %>
-									<% @order.update(status: "発送準備中") %>
-								<% end %>
+								
 								<!-- 自動更新機能 -->
 
 								<%= form_with model:order_detail, url:"/admins/order_details/#{order_detail.id}" do |f| %>

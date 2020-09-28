@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   #rootパス
-  root 'customers/homes#top'
+  
 
   # 管理者用サイトのrouting
    devise_for :admins
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
 	# 顧客用サイトのrouting
     devise_for :customers
+    root 'customers/homes#top'
     namespace :customers do
 	    get 'homes/top' => 'homes#top', as: 'customer_top'
 		get 'homes/about' => 'homes#about', as: 'customer_about'
