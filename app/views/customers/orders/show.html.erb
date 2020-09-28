@@ -11,7 +11,22 @@
             <tr><th class="active">注文日</th><td><%= @order.created_at.strftime('%Y/%m/%d') %></td></tr>
             <tr><th class="active">配送先</th><td><%= @order.address %></td></tr>
             <tr><th class="active">支払方法</th><td><%= @order.payment_method%></td></tr>
-			<tr><th class="active">ステータス</th><td><%= @order.status %></td></tr>
+			<tr>
+                <th class="active">ステータス</th>
+                <td>
+                <% if order.status == "入金待ち" %>
+                    <p>入金待ち</p>
+                <% elsif order.status == "入金確認" %>
+                    <p>入金確認</p>
+                <% elsif order.status == "製作中" %>
+                    <p>製作中</p>
+                <% elsif order.status == "発送準備中" %>
+                    <p>発送準備中</p>
+                <% else %>
+                    <p>発送済み</p>
+                <% end %>
+                </td>
+            </tr>
 		</table>
         </div>
 
