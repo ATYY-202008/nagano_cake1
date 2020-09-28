@@ -27,24 +27,24 @@
                     <%= f.label :商品名, style: "margin-right: 24px;" %>
                     <%= f.text_field :name %>
                 </div>
-                <div class="row" style="margin-top: 20px;">
+                <div class="row form-interval">
                     <%= f.label :商品説明, style: "margin: 20px 10px 0 0" %>
-                    <%= f.text_area :introduction %>
+                    <%= f.text_area :introduction, size:"22x4" %>
                 </div>
-                <div class="row" style="margin-top: 20px;">
+                <div class="row form-interval">
                     <%= f.label :ジャンル, style: "margin-right: 12px;"  %>
                     <%= f.collection_select :genre_id, Genre.where(is_active: true), :id, :name %>
                 </div>
-                <div class="row" style="margin-top: 20px;">
+                <div class="row form-interval">
                     <%= f.label :税抜価格, style: "margin-right: 12px;" %>
                     <%= f.text_field :price %>円
                 </div>
-                <div class="row" style="margin-top: 20px;">
-                    <%= f.label :販売ステータス %>
+                <div class="row form-interval">
+                    <label>販売<br>ステータス</label>
                     <%= f.select :is_active, {"販売中":true ,"売り切れ":false},{ include_blank: '-- 選択してください --' } %>
                 </div>
 
-                <div class="row"  style="margin-top: 30px; margin-left: 130px;">
+                <div class="row new_item_submit">
                     <%= f.submit "新規登録", class: "btn btn-primary btn-lg" %>
                 </div>
             </div>
